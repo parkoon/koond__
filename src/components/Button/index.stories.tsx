@@ -53,6 +53,13 @@ export const button = () => {
       <Button variant="primary" block>
         Default
       </Button>
+
+      <br />
+      <br />
+
+      <Button variant="primary" disabled>
+        Default
+      </Button>
     </>
   )
 }

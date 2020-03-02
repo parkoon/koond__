@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
 
-// Type
+// Types
 type ButtonType = 'primary' | 'dashed' | 'link'
 type ButtonSize = 'large' | 'small' | 'default'
 
@@ -12,9 +12,10 @@ type Props = {
   variant?: ButtonType
   size?: ButtonSize
   block?: boolean
+  disabled?: boolean
 }
 
-// Constant
+// Constants
 const BUTTON_PADDING_PER_SIZE = {
   default: '4px 15px',
   small: '0 7px',
@@ -22,8 +23,9 @@ const BUTTON_PADDING_PER_SIZE = {
 }
 
 //   Function
-const buttonBorder = ({ variant }: Props) => {
-  console.log(variant)
+const buttonBorder = ({ variant, disabled }: Props) => {
+  if (disabled) return `1px solid ${palette.button.outline}`
+
   switch (variant) {
     case 'primary':
       return `1px solid ${palette.button.primary}`
@@ -36,18 +38,19 @@ const buttonBorder = ({ variant }: Props) => {
   }
 }
 
-const buttonBackground = ({ variant }: Props) => {
+const buttonBackground = ({ variant, disabled }: Props) => {
+  if (disabled) return palette.button.disabled
   if (variant === 'primary') return palette.button.primary
   return palette.button.white
 }
 
-const buttonTextColor = ({ variant }: Props) => {
-  if (variant === 'primary') return palette.button.white
+const buttonTextColor = ({ variant, disabled }: Props) => {
+  if (variant === 'primary' && !disabled) return palette.button.white
   return palette.button.text
 }
 
-const buttonHoverBackground = ({ variant }: Props) => {
-  if (variant !== 'primary') return
+const buttonHoverBackground = ({ variant, disabled }: Props) => {
+  if (variant !== 'primary' || disabled) return
   return colorControler(palette.button.primary, -20)
 }
 
@@ -60,17 +63,17 @@ const buttonPadding = ({ size }: Props) => {
   return BUTTON_PADDING_PER_SIZE[size]
 }
 
-const buttonBlock = ({ block }: Props) => (block ? { display: 'block', width: '100%' } : {})
-
+const buttonBlock = ({ block }: Props) => (block ? { display: 'block', width: '100%' } : { display: 'inline-flex' })
+const buttonCursor = ({ disabled }: Props) => (disabled ? 'not-allowed' : 'cursor')
 const CommonStyle = styled.button<Props>`
   position: relative;
-  /* display: block;
-  width: 100%; */
+
   ${buttonBlock}
-  /* display: inline-flex; */
+  
   padding: ${buttonPadding};
   line-height: 1.5;
-  cursor: pointer;
+  cursor: ${buttonCursor};
+
 
   background: ${buttonBackground};
   color: ${buttonTextColor};
@@ -95,6 +98,7 @@ Button.defaultProps = {
   variant: undefined,
   size: 'default',
   block: false,
+  disabled: false,
 }
 
 export default Button

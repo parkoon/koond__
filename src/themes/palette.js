@@ -4,6 +4,7 @@ const palette = {
     outline: '#d9d9d9',
     white: '#fff',
     text: '#757575',
+    disabled: '#f5f5f5',
   },
 
   secondary: '#6439fd',
