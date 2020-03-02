@@ -46,6 +46,13 @@ export const button = () => {
         Small
       </Button>
       <Button variant="primary">Default</Button>
+
+      <br />
+      <br />
+
+      <Button variant="primary" block>
+        Default
+      </Button>
     </>
   )
 }

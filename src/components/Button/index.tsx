@@ -11,6 +11,7 @@ type Props = {
   children: React.ReactNode
   variant?: ButtonType
   size?: ButtonSize
+  block?: boolean
 }
 
 // Constant
@@ -59,9 +60,14 @@ const buttonPadding = ({ size }: Props) => {
   return BUTTON_PADDING_PER_SIZE[size]
 }
 
+const buttonBlock = ({ block }: Props) => (block ? { display: 'block', width: '100%' } : {})
+
 const CommonStyle = styled.button<Props>`
   position: relative;
-  display: inline-flex;
+  /* display: block;
+  width: 100%; */
+  ${buttonBlock}
+  /* display: inline-flex; */
   padding: ${buttonPadding};
   line-height: 1.5;
   cursor: pointer;
@@ -88,6 +94,7 @@ function Button({ children, ...props }: Props) {
 Button.defaultProps = {
   variant: undefined,
   size: 'default',
+  block: false,
 }
 
 export default Button
