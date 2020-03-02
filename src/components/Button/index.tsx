@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
-
+import Icon from '../Icon'
 // Types
 type ButtonType = 'primary' | 'dashed' | 'link'
 type ButtonSize = 'large' | 'small' | 'default'
@@ -91,7 +91,11 @@ const CommonStyle = styled.button<Props>`
 const StyledButton = styled(CommonStyle)``
 
 function Button({ children, ...props }: Props) {
-  return <StyledButton {...props}>{children}</StyledButton>
+  return (
+    <StyledButton {...props}>
+      {children} <Icon icon="loading" />
+    </StyledButton>
+  )
 }
 
 Button.defaultProps = {
