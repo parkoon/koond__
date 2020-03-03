@@ -96,6 +96,11 @@ export const button = () => {
       <Button variant="dashed" icon={<Icon icon="search" />}>
         Search
       </Button>
+
+      <br />
+      <br />
+
+      <Button htmlType="submit">Submit</Button>
     </>
   )
 }

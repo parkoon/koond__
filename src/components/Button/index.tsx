@@ -21,6 +21,7 @@ type Props = {
   icon?: React.ReactNode
   href?: string
   onlyIcon?: boolean
+  htmlType?: 'submit' | 'button' | 'reset'
 }
 
 // Constants
@@ -131,7 +132,7 @@ const Space = styled.span`
   margin: 0 3px;
 `
 
-function Button({ children, ...props }: Props) {
+function Button({ children, htmlType, ...props }: Props) {
   const { loading, disabled, icon, href, variant } = props
 
   /**
@@ -159,7 +160,7 @@ function Button({ children, ...props }: Props) {
       {isAnchorButton ? (
         <AnchorButton {...props}>{children}</AnchorButton>
       ) : (
-        <NoramlButton {...props} disabled={isDisabled} onlyIcon={onlyIcon}>
+        <NoramlButton type={htmlType} {...props} disabled={isDisabled} onlyIcon={onlyIcon}>
           {icon}
           {/* 아이콘과 텍스트가 함께 있는 경우 여백 추가 */}
           {hasIconWithText && <Space />}
@@ -176,6 +177,7 @@ Button.defaultProps = {
   block: false,
   disabled: false,
   loading: false,
+  htmlType: 'button',
 }
 
 export default Button
