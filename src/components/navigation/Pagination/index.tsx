@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import Icon from '../../general/Icon'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
 
@@ -64,13 +63,10 @@ const PaginationLink = styled.a<PaginationLinkProps>`
   height: 32px;
 
   margin-right: 8px;
-  /* border: none; */
   font-size: 14px;
   color: ${pageButtonColor};
   outline: none;
   cursor: pointer;
-
-  /* margin-right: 7px; */
 `
 
 function Pagination({ limit, total, onChange, neighbours, outline, defaultCurrent, ...props }: Props) {
@@ -161,8 +157,6 @@ function Pagination({ limit, total, onChange, neighbours, outline, defaultCurren
     console.log(paginationData)
 
     setCurrentPage(currentPage)
-
-    // this.setState({ currentPage }, () => onPageChanged(paginationData));
   }
 
   const handleClick = page => evt => {
