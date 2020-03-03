@@ -17,6 +17,9 @@ export const icon = () => {
   return (
     <>
       <Icon name="search" />
+      <br />
+      <br />
+      <Icon name="search" spin />
     </>
   )
 }
