@@ -105,11 +105,6 @@ const styles = css`
     color: ${buttonHoverColor};
     border-color: ${buttonHoverColor};
   }
-
-  .icon {
-    display: flex;
-    /* margin-right: 12px; */
-  }
 `
 /**
  * Dummy Link
@@ -119,6 +114,7 @@ const DummyLink = ({ ...props }) => <a {...props}></a>
 
 const AnchorButton = styled(DummyLink)<Props>`
   ${styles}
+  text-decoration: none;
 `
 
 const NoramlButton = styled.button<Props>`
