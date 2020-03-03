@@ -40,7 +40,6 @@ const range = (from: number, to: number, step: number = 1) => {
 
 const pageButtonColor = ({ current }: PaginationLinkProps) => (current ? palette.primary : palette.typography.default)
 const pageButtonBorder = ({ current, outline }: PaginationLinkProps) => {
-  console.log(outline)
   if (current) {
     return `1px solid ${palette.button.primary}`
   }
@@ -154,9 +153,8 @@ function Pagination({ limit, total, onChange, neighbours, outline, defaultCurren
       totalRecords: total,
     }
 
-    console.log(paginationData)
-
     setCurrentPage(currentPage)
+    onChange(currentPage)
   }
 
   const handleClick = page => evt => {

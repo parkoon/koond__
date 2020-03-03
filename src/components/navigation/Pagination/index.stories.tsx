@@ -13,9 +13,7 @@ export default {
 }
 
 export const pagination = () => {
-  const onChange = (page: number) => {
-    console.log('=== current page ===', page)
-  }
+  const onChange = (page: number) => {}
   return (
     <>
       <Pagination total={500} limit={10} neighbours={1} onChange={onChange} />
