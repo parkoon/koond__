@@ -1,5 +1,8 @@
 const palette = {
   primary: '#312a75',
+  white: '#fff',
+  ouline: '#d9d9d9',
+
   button: {
     primary: '#312a75',
     outline: '#d9d9d9',
