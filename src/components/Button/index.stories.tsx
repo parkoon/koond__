@@ -34,7 +34,9 @@ export const button = () => {
     <>
       <Button variant="primary">Primary</Button>
       <Button>Default</Button>
-      <Button variant="link">Link</Button>
+      <Button variant="link" href="https://naver.com">
+        Link
+      </Button>
       <Button variant="dashed">Dashed</Button>
 
       <br />
