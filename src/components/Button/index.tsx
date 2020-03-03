@@ -31,19 +31,17 @@ const BUTTON_RADIUS = {
   round: '30px',
 }
 
+const BUTTON_BORDER = {
+  primary: `1px solid ${palette.button.primary}`,
+  link: 'none',
+  dashed: `1px dashed ${palette.button.outline}`,
+  default: `1px solid ${palette.button.outline}`,
+}
+
 //   Function
 const buttonBorder = ({ variant, disabled }: Props) => {
-  switch (variant) {
-    case 'primary':
-      if (disabled) return `1px solid ${palette.button.outline}`
-      return `1px solid ${palette.button.primary}`
-    case 'link':
-      return 'none'
-    case 'dashed':
-      return `1px dashed ${palette.button.outline}`
-    default:
-      return `1px solid ${palette.button.outline}`
-  }
+  if (variant === 'primary' && disabled) return BUTTON_BORDER['default']
+  return BUTTON_BORDER[variant]
 }
 
 const buttonBackground = ({ variant, disabled }: Props) => {
@@ -166,7 +164,7 @@ function Button({ children, htmlType, ...props }: Props) {
 }
 
 Button.defaultProps = {
-  variant: undefined,
+  variant: 'default',
   size: 'default',
   block: false,
   disabled: false,
