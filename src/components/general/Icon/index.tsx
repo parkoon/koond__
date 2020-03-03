@@ -15,12 +15,10 @@ const rotation = keyframes`
     }
 `
 
-const spinAnimation = ({ spin }: Props) => spin && `${rotation} 1.5s infinite linear `
-
 const NormalIcon = styled.span<Props>`
   display: inline-block;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1rem;
+  height: 1rem;
 
   & > svg {
     width: 100%;
