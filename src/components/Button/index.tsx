@@ -20,6 +20,7 @@ type Props = {
   shape?: ButtonShape
   icon?: React.ReactNode
   href?: string
+  onlyIcon?: boolean
 }
 
 // Constants
@@ -69,9 +70,8 @@ const buttonHoverColor = ({ variant, disabled, loading }: Props) => {
   return palette.button.primary
 }
 
-const buttonPadding = ({ size, children }: Props) => {
-  console.log('children', children)
-  if (!children[1]) return '7px'
+const buttonPadding = ({ size, onlyIcon, children }: Props) => {
+  if (onlyIcon) return '7px'
   return BUTTON_PADDING_PER_SIZE[size]
 }
 
@@ -135,6 +135,11 @@ function Button({ children, ...props }: Props) {
   const { loading, disabled, icon, href, variant } = props
 
   /**
+   * Icon만 있는 경우
+   */
+  const onlyIcon = icon && !children
+
+  /**
    * Text 와 Icon 이 같이 있는지 여부
    */
   const hasIconWithText = icon && children
@@ -154,7 +159,7 @@ function Button({ children, ...props }: Props) {
       {isAnchorButton ? (
         <AnchorButton {...props}>{children}</AnchorButton>
       ) : (
-        <NoramlButton {...props} disabled={isDisabled}>
+        <NoramlButton {...props} disabled={isDisabled} onlyIcon={onlyIcon}>
           {icon}
           {/* 아이콘 있는 경우 여백 추가 */}
           {hasIconWithText && <Space />}
