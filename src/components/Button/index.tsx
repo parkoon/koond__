@@ -4,20 +4,16 @@ import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
 import Spin from '../Spin'
 // Types
-type ButtonType = 'primary' | 'dashed' | 'link' | 'default'
-type ButtonSize = 'large' | 'small' | 'default'
-type ButtonShape = 'round' | 'circle' | 'default'
-
 type Props = {
   children?: React.ReactNode
 
   /** 보여주고 싶은 이름 */
-  variant?: ButtonType
-  size?: ButtonSize
+  variant?: 'primary' | 'dashed' | 'link' | 'default'
+  size?: 'large' | 'small' | 'default'
   block?: boolean
   disabled?: boolean
   loading?: boolean
-  shape?: ButtonShape
+  shape?: 'round' | 'circle' | 'default'
   icon?: React.ReactNode
   href?: string
   onlyIcon?: boolean
@@ -158,7 +154,9 @@ function Button({ children, htmlType, ...props }: Props) {
   return (
     <>
       {isAnchorButton ? (
-        <AnchorButton {...props}>{children}</AnchorButton>
+        <AnchorButton {...props} href={href}>
+          {children}
+        </AnchorButton>
       ) : (
         <NoramlButton type={htmlType} {...props} disabled={isDisabled} onlyIcon={onlyIcon}>
           {icon}
