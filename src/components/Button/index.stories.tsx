@@ -90,12 +90,12 @@ export const button = () => {
       <br />
       <br />
 
-      <Button variant="primary" icon={<Icon icon="search" />}>
+      <Button variant="primary" icon={<Icon name="search" />}>
         Primary
       </Button>
-      <Button variant="primary" shape="circle" icon={<Icon icon="search" />} />
-      <Button shape="circle" icon={<Icon icon="search" />} />
-      <Button variant="dashed" icon={<Icon icon="search" />}>
+      <Button variant="primary" shape="circle" icon={<Icon name="search" />} />
+      <Button shape="circle" icon={<Icon name="search" />} />
+      <Button variant="dashed" icon={<Icon name="search" />}>
         Search
       </Button>
 
