@@ -51,13 +51,22 @@ export const button = () => {
       <br />
 
       <Button variant="primary" block>
-        Default
+        Primary
       </Button>
 
       <br />
       <br />
 
       <Button variant="primary" disabled>
+        Primary
+      </Button>
+      <br />
+      <br />
+
+      <Button variant="primary" loading>
+        Primary
+      </Button>
+      <Button loading size="large">
         Default
       </Button>
     </>

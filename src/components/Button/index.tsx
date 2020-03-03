@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
-import Icon from '../Icon'
+import Spin from '../Spin'
 // Types
 type ButtonType = 'primary' | 'dashed' | 'link'
 type ButtonSize = 'large' | 'small' | 'default'
@@ -13,6 +13,7 @@ type Props = {
   size?: ButtonSize
   block?: boolean
   disabled?: boolean
+  loading?: boolean
 }
 
 // Constants
@@ -49,13 +50,13 @@ const buttonTextColor = ({ variant, disabled }: Props) => {
   return palette.button.text
 }
 
-const buttonHoverBackground = ({ variant, disabled }: Props) => {
-  if (variant !== 'primary' || disabled) return
+const buttonHoverBackground = ({ variant, disabled, loading }: Props) => {
+  if (variant !== 'primary' || disabled || loading) return
   return colorControler(palette.button.primary, -20)
 }
 
-const buttonHoverColor = ({ variant }: Props) => {
-  if (variant === 'primary') return
+const buttonHoverColor = ({ variant, disabled, loading }: Props) => {
+  if (variant === 'primary' || disabled || loading) return
   return palette.button.primary
 }
 
@@ -69,11 +70,12 @@ const CommonStyle = styled.button<Props>`
   position: relative;
 
   ${buttonBlock}
-  
+
+  align-items: center;
+
   padding: ${buttonPadding};
   line-height: 1.5;
   cursor: ${buttonCursor};
-
 
   background: ${buttonBackground};
   color: ${buttonTextColor};
@@ -91,9 +93,11 @@ const CommonStyle = styled.button<Props>`
 const StyledButton = styled(CommonStyle)``
 
 function Button({ children, ...props }: Props) {
+  const { loading, disabled } = props
   return (
-    <StyledButton {...props}>
-      {children} <Icon icon="loading" />
+    <StyledButton {...props} disabled={loading || disabled}>
+      {loading && <Spin style={{ marginRight: '12px' }} />}
+      {children}
     </StyledButton>
   )
 }
@@ -103,6 +107,7 @@ Button.defaultProps = {
   size: 'default',
   block: false,
   disabled: false,
+  loading: false,
 }
 
 export default Button
