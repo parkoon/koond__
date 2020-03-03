@@ -124,7 +124,7 @@ const AnchorButton = styled(DummyLink)<Props>`
   ${styles}
 `
 
-const StyledButton = styled.button<Props>`
+const NoramlButton = styled.button<Props>`
   ${styles}
 `
 const Space = styled.span`
@@ -154,11 +154,11 @@ function Button({ children, ...props }: Props) {
       {isAnchorButton ? (
         <AnchorButton {...props}>{children}</AnchorButton>
       ) : (
-        <StyledButton {...props} disabled={isDisabled}>
+        <NoramlButton {...props} disabled={isDisabled}>
           {icon}
           {hasIconWithText && <Space />}
           {children}
-        </StyledButton>
+        </NoramlButton>
       )}
     </>
   )
