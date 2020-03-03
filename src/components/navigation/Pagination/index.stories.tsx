@@ -20,7 +20,7 @@ export const pagination = () => {
     <>
       <Pagination total={500} limit={10} neighbours={1} onChange={onChange} />
       <br />
-      {/* <Pagination total={52} limit={10} onChange={onChange} defaultCurrent={3} /> */}
+      <Pagination total={500} limit={10} neighbours={1} outline onChange={onChange} />
     </>
   )
 }

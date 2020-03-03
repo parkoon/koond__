@@ -3,6 +3,10 @@ import Icon from '../../general/Icon'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
 
+// Constants
+const LEFT_PAGE = 'LEFT'
+const RIGHT_PAGE = 'RIGHT'
+
 // Types
 type Props = {
   total: number
@@ -10,22 +14,15 @@ type Props = {
   neighbours: number
   onChange?: (page: number) => void
   defaultCurrent?: number
+  outline: boolean
 }
 
-type PageButtonProps = {
+type PaginationLinkProps = {
   current?: boolean
+  outline?: boolean
 }
 
 // Functions
-const getMaxPage = (total: number, limit: number) => {
-  let max = Math.floor(total / limit)
-  if (total % limit !== 0) ++max
-  return max
-}
-
-const LEFT_PAGE = 'LEFT'
-const RIGHT_PAGE = 'RIGHT'
-
 /**
  * Helper method for creating a range of numbers
  * range(1, 5) => [1, 2, 3, 4, 5]
@@ -42,22 +39,41 @@ const range = (from: number, to: number, step: number = 1) => {
   return range
 }
 
-const pageButtonColor = ({ current }: PageButtonProps) => current && palette.button.primary
-const pageButtonBorder = ({ current }: PageButtonProps) => (current ? palette.button.primary : palette.button.outline)
+const pageButtonColor = ({ current }: PaginationLinkProps) => (current ? palette.primary : palette.typography.default)
+const pageButtonBorder = ({ current, outline }: PaginationLinkProps) => {
+  console.log(outline)
+  if (current) {
+    return `1px solid ${palette.button.primary}`
+  }
+
+  if (outline) {
+    return `1px solid ${palette.button.outline}`
+  }
+
+  return 'none'
+}
 
 // Styled
-const PageButton = styled.button<PageButtonProps>`
-  /* border: 1px solid ${pageButtonBorder}; */
-  border: none;
+const PaginationLink = styled.a<PaginationLinkProps>`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: ${pageButtonBorder};
+
+  min-width: 32px;
+  height: 32px;
+
+  margin-right: 8px;
+  /* border: none; */
   font-size: 14px;
   color: ${pageButtonColor};
   outline: none;
   cursor: pointer;
 
-  margin-right: 7px;
+  /* margin-right: 7px; */
 `
 
-function Pagination({ limit, total, onChange, neighbours, defaultCurrent, ...props }: Props) {
+function Pagination({ limit, total, onChange, neighbours, outline, defaultCurrent, ...props }: Props) {
   const [currentPage, setCurrentPage] = useState(defaultCurrent)
 
   useEffect(() => {
@@ -170,13 +186,23 @@ function Pagination({ limit, total, onChange, neighbours, defaultCurrent, ...pro
     <>
       <ul className="pagination">
         {pages.map((page, index) => {
-          if (page === LEFT_PAGE) return <PageButton onClick={handleMoveLeft}>&laquo;</PageButton>
-          if (page === RIGHT_PAGE) return <PageButton onClick={handleMoveRight}>&raquo;</PageButton>
+          if (page === LEFT_PAGE)
+            return (
+              <PaginationLink outline={outline} onClick={handleMoveLeft}>
+                &laquo;
+              </PaginationLink>
+            )
+          if (page === RIGHT_PAGE)
+            return (
+              <PaginationLink outline={outline} onClick={handleMoveRight}>
+                &raquo;
+              </PaginationLink>
+            )
 
           return (
-            <PageButton onClick={handleClick(page)} current={currentPage === page}>
+            <PaginationLink onClick={handleClick(page)} outline={outline} current={currentPage === page}>
               {page}
-            </PageButton>
+            </PaginationLink>
           )
         })}
       </ul>
@@ -186,7 +212,7 @@ function Pagination({ limit, total, onChange, neighbours, defaultCurrent, ...pro
 
 Pagination.defaultProps = {
   defaultCurrent: 1,
-  ouline: false,
+  outline: false,
 }
 
 export default Pagination

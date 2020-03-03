@@ -1,4 +1,5 @@
 const palette = {
+  primary: '#312a75',
   button: {
     primary: '#312a75',
     outline: '#d9d9d9',
