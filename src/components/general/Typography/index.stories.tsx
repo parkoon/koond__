@@ -1,7 +1,7 @@
 import React from 'react'
 import { withKnobs, boolean, text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import Typography from './'
+import Typography from '../Typography'
 
 export default {
   title: 'General',

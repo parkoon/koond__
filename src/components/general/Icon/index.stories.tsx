@@ -1,7 +1,7 @@
 import React from 'react'
 import { withKnobs, boolean, text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import Icon from './'
+import Icon from '../Icon'
 
 export default {
   title: 'General',

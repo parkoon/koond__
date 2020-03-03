@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import palette from '../../themes/palette'
-import colorControler from '../../helpers/colorControler'
+import palette from '../../../themes/palette'
+import colorControler from '../../../helpers/colorControler'
 
 // Types
 type Props = {
