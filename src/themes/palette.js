@@ -7,6 +7,10 @@ const palette = {
     disabled: '#f5f5f5',
   },
 
+  typography: {
+    default: '#333333',
+  },
+
   secondary: '#6439fd',
   danger: '#f75d5e',
   success: '#50e3c2',

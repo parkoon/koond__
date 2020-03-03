@@ -21,7 +21,10 @@ export const typography = () => {
       <Typography.Paragraph />
       <br />
       <br />
-      <Typography.Title />
+      <Typography.Title>h1. parkoon design</Typography.Title>
+      <Typography.Title level={2}>h2. parkoon design</Typography.Title>
+      <Typography.Title level={3}>h3. parkoon design</Typography.Title>
+      <Typography.Title level={4}>h4. parkoon design</Typography.Title>
     </>
   )
 }
