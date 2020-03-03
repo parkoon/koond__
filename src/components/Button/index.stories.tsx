@@ -2,6 +2,7 @@ import React from 'react'
 import { withKnobs, boolean, text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import Button from './'
+import Icon from '../Icon'
 
 export default {
   title: 'General',
@@ -70,6 +71,10 @@ export const button = () => {
       <Button variant="primary" disabled>
         Primary(disabled)
       </Button>
+      <Button variant="dashed" disabled>
+        Dashed(disabled)
+      </Button>
+      <Button disabled>Default(disabled)</Button>
       <br />
       <br />
 
@@ -78,6 +83,18 @@ export const button = () => {
       </Button>
       <Button loading size="large">
         Default
+      </Button>
+
+      <br />
+      <br />
+
+      <Button variant="primary" icon={<Icon icon="search" />}>
+        Primary
+      </Button>
+      <Button variant="primary" shape="circle" icon={<Icon icon="search" />} />
+      <Button shape="circle" icon={<Icon icon="search" />} />
+      <Button variant="dashed" icon={<Icon icon="search" />}>
+        Search
       </Button>
     </>
   )

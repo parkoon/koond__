@@ -9,13 +9,16 @@ type ButtonSize = 'large' | 'small' | 'default'
 type ButtonShape = 'round' | 'circle' | 'default'
 
 type Props = {
-  children: React.ReactNode
+  children?: React.ReactNode
+
+  /** 보여주고 싶은 이름 */
   variant?: ButtonType
   size?: ButtonSize
   block?: boolean
   disabled?: boolean
   loading?: boolean
   shape?: ButtonShape
+  icon?: React.ReactNode
 }
 
 // Constants
@@ -31,10 +34,9 @@ const BUTTON_RADIUS = {
 
 //   Function
 const buttonBorder = ({ variant, disabled }: Props) => {
-  if (disabled) return `1px solid ${palette.button.outline}`
-
   switch (variant) {
     case 'primary':
+      if (disabled) return `1px solid ${palette.button.outline}`
       return `1px solid ${palette.button.primary}`
     case 'link':
       return 'none'
@@ -66,7 +68,9 @@ const buttonHoverColor = ({ variant, disabled, loading }: Props) => {
   return palette.button.primary
 }
 
-const buttonPadding = ({ size }: Props) => {
+const buttonPadding = ({ size, children }: Props) => {
+  console.log('children', children)
+  if (!children[1]) return '7px'
   return BUTTON_PADDING_PER_SIZE[size]
 }
 
@@ -75,7 +79,7 @@ const buttonBorderRadius = ({ shape }: Props) => {
 }
 
 const buttonBlock = ({ block }: Props) => (block ? { display: 'block', width: '100%' } : { display: 'inline-flex' })
-const buttonCursor = ({ disabled }: Props) => (disabled ? 'not-allowed' : 'cursor')
+const buttonCursor = ({ disabled }: Props) => (disabled ? 'not-allowed' : 'pointer')
 const CommonStyle = styled.button<Props>`
   position: relative;
 
@@ -99,15 +103,30 @@ const CommonStyle = styled.button<Props>`
     color: ${buttonHoverColor};
     border-color: ${buttonHoverColor};
   }
+
+  .icon {
+    display: flex;
+    /* margin-right: 12px; */
+  }
 `
 
 const StyledButton = styled(CommonStyle)``
+const Space = styled.span`
+  margin: 0 3px;
+`
 
 function Button({ children, ...props }: Props) {
-  const { loading, disabled } = props
+  const { loading, disabled, icon } = props
+  const hasIconWithText = icon && children
+
+  // 아이콘이 있는 경우
+  // childrendl 없는 경우
+
   return (
     <StyledButton {...props} disabled={loading || disabled}>
-      {loading && <Spin style={{ marginRight: '12px' }} />}
+      {icon}
+      {/* {loading && <Spin />} */}
+      {hasIconWithText && <Space />}
       {children}
     </StyledButton>
   )

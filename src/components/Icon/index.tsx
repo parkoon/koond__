@@ -10,14 +10,13 @@ type Props = {
 
 const StyledIcon = styled.span<Props>`
   display: inline-block;
-  width: 1rem;
-  height: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
   & > svg {
     width: 100%;
     height: 100%;
-    fill: red;
-    stroke: red;
-    stop-color: red;
+    fill: currentColor;
+    stroke: currentColor;
   }
 `
 
