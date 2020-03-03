@@ -156,6 +156,7 @@ function Button({ children, ...props }: Props) {
       ) : (
         <NoramlButton {...props} disabled={isDisabled}>
           {icon}
+          {/* 아이콘 있는 경우 여백 추가 */}
           {hasIconWithText && <Space />}
           {children}
         </NoramlButton>
