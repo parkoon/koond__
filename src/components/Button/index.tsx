@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
-import Spin from '../Spin'
+
 // Types
 type Props = {
   children?: React.ReactNode
@@ -65,7 +65,7 @@ const buttonHoverColor = ({ variant, disabled, loading }: Props) => {
   return palette.button.primary
 }
 
-const buttonPadding = ({ size, onlyIcon, children }: Props) => {
+const buttonPadding = ({ size, onlyIcon }: Props) => {
   if (onlyIcon) return '7px'
   return BUTTON_PADDING_PER_SIZE[size]
 }
@@ -88,7 +88,6 @@ const styles = css`
   align-items: center;
 
   padding: ${buttonPadding};
-  /* line-height: 1.5; */
   cursor: ${buttonCursor};
 
   background: ${buttonBackground};
