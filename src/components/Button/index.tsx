@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
 import Spin from '../Spin'
@@ -19,13 +19,14 @@ type Props = {
   loading?: boolean
   shape?: ButtonShape
   icon?: React.ReactNode
+  href?: string
 }
 
 // Constants
 const BUTTON_PADDING_PER_SIZE = {
-  default: '4px 15px',
+  default: '5px 16px',
   small: '0 7px',
-  large: '6px 17px',
+  large: '7px 18px',
 }
 const BUTTON_RADIUS = {
   circle: '50%',
@@ -80,15 +81,19 @@ const buttonBorderRadius = ({ shape }: Props) => {
 
 const buttonBlock = ({ block }: Props) => (block ? { display: 'block', width: '100%' } : { display: 'inline-flex' })
 const buttonCursor = ({ disabled }: Props) => (disabled ? 'not-allowed' : 'pointer')
-const CommonStyle = styled.button<Props>`
-  position: relative;
 
+const styles = css`
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
   ${buttonBlock}
 
   align-items: center;
 
   padding: ${buttonPadding};
-  line-height: 1.5;
+  /* line-height: 1.5; */
   cursor: ${buttonCursor};
 
   background: ${buttonBackground};
@@ -109,26 +114,53 @@ const CommonStyle = styled.button<Props>`
     /* margin-right: 12px; */
   }
 `
+/**
+ * Dummy Link
+ * 나중에 next link 또는 react router link 로 변경하여 사용
+ */
+const DummyLink = ({ ...props }) => <a {...props}></a>
 
-const StyledButton = styled(CommonStyle)``
+const AnchorButton = styled(DummyLink)<Props>`
+  ${styles}
+`
+
+const StyledButton = styled.button<Props>`
+  ${styles}
+`
 const Space = styled.span`
   margin: 0 3px;
 `
 
 function Button({ children, ...props }: Props) {
-  const { loading, disabled, icon } = props
+  const { loading, disabled, icon, href, variant } = props
+
+  /**
+   * Text 와 Icon 이 같이 있는지 여부
+   */
   const hasIconWithText = icon && children
 
-  // 아이콘이 있는 경우
-  // childrendl 없는 경우
+  /**
+   * 버튼 disabled 여부
+   */
+  const isDisabled = loading || disabled
+
+  /**
+   * Link Button ?
+   */
+  const isAnchorButton = variant === 'link' || href
 
   return (
-    <StyledButton {...props} disabled={loading || disabled}>
-      {icon}
-      {/* {loading && <Spin />} */}
-      {hasIconWithText && <Space />}
-      {children}
-    </StyledButton>
+    <>
+      {isAnchorButton ? (
+        <AnchorButton {...props}>{children}</AnchorButton>
+      ) : (
+        <StyledButton {...props} disabled={isDisabled}>
+          {icon}
+          {hasIconWithText && <Space />}
+          {children}
+        </StyledButton>
+      )}
+    </>
   )
 }
 
