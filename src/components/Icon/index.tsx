@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 // Types
 type Props = {
-  icon: string
+  name: string
   dangerouslySetInnerHTML?: any
-  color?: string
+  style?: React.CSSProperties
 }
 
 const StyledIcon = styled.span<Props>`
@@ -20,9 +20,9 @@ const StyledIcon = styled.span<Props>`
   }
 `
 
-const Icon = ({ icon, ...props }: Props) => {
-  const svg = require(`!raw-loader!./icons/${icon}.svg`).default
-  return <StyledIcon icon={icon} {...props} dangerouslySetInnerHTML={{ __html: svg }} />
+const Icon = ({ name, ...props }: Props) => {
+  const svg = require(`!raw-loader!./icons/${name}.svg`).default
+  return <StyledIcon name={name} {...props} dangerouslySetInnerHTML={{ __html: svg }} />
 }
 
 export default Icon
