@@ -9,6 +9,8 @@ const palette = {
 
   typography: {
     default: '#333333',
+    danger: '#f75d5e',
+    warning: '#f1c40f',
   },
 
   secondary: '#6439fd',

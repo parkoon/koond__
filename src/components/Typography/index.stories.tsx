@@ -15,7 +15,26 @@ export default {
 export const typography = () => {
   return (
     <>
-      <Typography.Text />
+      <Typography.Text>Pakoon</Typography.Text>
+      <br />
+      <Typography.Text type="warning">Pakoon</Typography.Text>
+      <br />
+      <Typography.Text type="danger">Pakoon</Typography.Text>
+      <br />
+      <Typography.Text size="large" type="warning">
+        Pakoon(large)
+      </Typography.Text>
+      <br />
+      <Typography.Text size="small" type="danger">
+        Pakoon(small)
+      </Typography.Text>
+      <br />
+      <Typography.Text underline>Pakoon</Typography.Text>
+      <br />
+      <Typography.Text deleted>Pakoon</Typography.Text>
+      <br />
+      <Typography.Text strong>Pakoon</Typography.Text>
+      <br />
       <br />
       <br />
       <Typography.Paragraph />
