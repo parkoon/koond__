@@ -4,8 +4,9 @@ import palette from '../../themes/palette'
 import colorControler from '../../helpers/colorControler'
 import Spin from '../Spin'
 // Types
-type ButtonType = 'primary' | 'dashed' | 'link'
+type ButtonType = 'primary' | 'dashed' | 'link' | 'default'
 type ButtonSize = 'large' | 'small' | 'default'
+type ButtonShape = 'round' | 'circle' | 'default'
 
 type Props = {
   children: React.ReactNode
@@ -14,6 +15,7 @@ type Props = {
   block?: boolean
   disabled?: boolean
   loading?: boolean
+  shape?: ButtonShape
 }
 
 // Constants
@@ -21,6 +23,10 @@ const BUTTON_PADDING_PER_SIZE = {
   default: '4px 15px',
   small: '0 7px',
   large: '6px 17px',
+}
+const BUTTON_RADIUS = {
+  circle: '50%',
+  round: '30px',
 }
 
 //   Function
@@ -64,6 +70,10 @@ const buttonPadding = ({ size }: Props) => {
   return BUTTON_PADDING_PER_SIZE[size]
 }
 
+const buttonBorderRadius = ({ shape }: Props) => {
+  return BUTTON_RADIUS[shape]
+}
+
 const buttonBlock = ({ block }: Props) => (block ? { display: 'block', width: '100%' } : { display: 'inline-flex' })
 const buttonCursor = ({ disabled }: Props) => (disabled ? 'not-allowed' : 'cursor')
 const CommonStyle = styled.button<Props>`
@@ -80,6 +90,7 @@ const CommonStyle = styled.button<Props>`
   background: ${buttonBackground};
   color: ${buttonTextColor};
   border: ${buttonBorder};
+  border-radius: ${buttonBorderRadius};
 
   transition: 0.2s;
 

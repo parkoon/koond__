@@ -57,8 +57,18 @@ export const button = () => {
       <br />
       <br />
 
+      <Button variant="primary" shape="circle">
+        Primary(circle)
+      </Button>
+      <Button variant="primary" shape="round">
+        Primary(round)
+      </Button>
+      <Button variant="primary">Primary</Button>
+      <br />
+      <br />
+
       <Button variant="primary" disabled>
-        Primary
+        Primary(disabled)
       </Button>
       <br />
       <br />
