@@ -78,3 +78,28 @@ export const StyledInput = styled.input<InputProps>`
     color: ${palette.outline};
   }
 `
+export const StyledTextarea = styled.textarea`
+  color: ${palette.typography.default};
+  padding: 4px 11px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid ${palette.outline};
+  border-radius: 2px;
+  outline: none;
+
+  resize: vertical;
+  overflow: auto;
+
+  transition: 0.3s;
+
+  &:focus {
+    border-color: ${palette.primary};
+    box-shadow: 0 0 0 2px ${palette.shadow};
+  }
+
+  &:hover {
+    border-color: ${palette.primary};
+  }
+`

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input, Password } from './'
 import Icon from '../../general/Icon'
+import Textarea from './Textarea'
 
 export default {
   title: 'Data Entry',
@@ -17,6 +18,8 @@ export const input = () => {
       <Password onChange={value => console.log(value)} />
       <Password onChange={value => console.log(value)} htmlSize="large" />
       <Password onChange={value => console.log(value)} htmlSize="small" />
+
+      <Textarea rows={2} />
     </>
   )
 }
