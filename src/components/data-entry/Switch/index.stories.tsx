@@ -13,6 +13,7 @@ export const _switch = () => {
   return (
     <>
       <Switch onChange={handleChange} />
+      <Switch onChange={handleChange} size="small" />
     </>
   )
 }
