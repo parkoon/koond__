@@ -19,7 +19,7 @@ export const input = () => {
       <Password onChange={value => console.log(value)} htmlSize="large" />
       <Password onChange={value => console.log(value)} htmlSize="small" />
 
-      <Textarea rows={2} />
+      <Textarea rows={2} onChange={value => console.log(value)} />
     </>
   )
 }
