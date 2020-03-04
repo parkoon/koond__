@@ -33,6 +33,4 @@ Input.defaultProps = {
   htmlSize: 'default',
 }
 
-Input.Password = Password
-
 export default Input
