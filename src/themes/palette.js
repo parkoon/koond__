@@ -1,7 +1,8 @@
 const palette = {
   primary: '#312a75',
   white: '#fff',
-  ouline: '#d9d9d9',
+  outline: '#d9d9d9',
+  shadow: 'rgb(49, 42, 117, 0.2)',
 
   button: {
     primary: '#312a75',
@@ -15,6 +16,7 @@ const palette = {
     default: '#333333',
     danger: '#f75d5e',
     warning: '#f1c40f',
+    grayscale: ['#212121', '#414141', '#616161', '#9e9e9e', '#bdbdbd', '#e0e0e0', '#eeeeee', '#ffffff'],
   },
 
   secondary: '#6439fd',
