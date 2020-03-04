@@ -7,9 +7,17 @@ export default {
 }
 
 export const radio = () => {
+  const handleChange = e => {
+    console.log(e.target.value)
+  }
   return (
     <>
-      <Radio>Radio</Radio>
+      <Radio name="a" value={1} onChange={handleChange} checked>
+        A
+      </Radio>
+      <Radio name="a" value={2} onChange={handleChange}>
+        B
+      </Radio>
     </>
   )
 }

@@ -46,13 +46,18 @@ const StyledLabel = styled.label`
 `
 
 type RadioProps = {
-  children: string
+  children?: string
+  name?: string
+  value: any
+  checked?: boolean
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-function Radio({ children }: RadioProps) {
+function Radio({ children, ...props }: RadioProps) {
+  //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {}
   return (
     <StyledLabel>
-      <StyledRadio type="radio"></StyledRadio>
+      <StyledRadio type="radio" {...props}></StyledRadio>
       <StyledRadioIcon />
       <StyledRadioText>{children}</StyledRadioText>
     </StyledLabel>
