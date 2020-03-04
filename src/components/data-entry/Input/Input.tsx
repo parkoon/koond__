@@ -35,6 +35,10 @@ const StyledInput = styled.input<InputProps>`
     box-shadow: 0 0 0 2px ${palette.shadow};
   }
 
+  &:hover {
+    border-color: ${palette.primary};
+  }
+
   &::placeholder {
     color: ${palette.outline};
   }
