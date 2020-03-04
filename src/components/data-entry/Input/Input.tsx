@@ -2,7 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
 
-const InputWrapper = styled.span<InpuWrapperProps>`
+// Constants
+const INPUT_SIZE = {
+  default: '4px',
+  large: '7px',
+  small: '2px',
+}
+
+// Functions
+const inputSize = ({ htmlSize }: InputProps) => `${INPUT_SIZE[htmlSize]} 11px`
+
+const InputWrapper = styled.span`
   display: inline-block;
   position: relative;
   width: 100%;
@@ -17,7 +27,7 @@ const IconWrapper = styled.span`
 `
 
 const StyledInput = styled.input<InputProps>`
-  padding: 4px 11px;
+  padding: ${inputSize};
   padding-left: ${({ icon }) => icon && '27px'};
   color: ${palette.typography.default};
   width: 100%;
@@ -47,19 +57,15 @@ const StyledInput = styled.input<InputProps>`
 // Types
 type InputProps = {
   placeholder?: string
-  size?: 'large' | 'defualt' | 'small'
+  htmlSize?: 'large' | 'defualt' | 'small'
   icon?: React.ReactNode
 }
 
-type InpuWrapperProps = {
-  size?: 'large' | 'defualt' | 'small'
-}
-
-function Input({ size, ...props }: InputProps) {
+function Input({ ...props }: InputProps) {
   const { icon } = props
 
   return (
-    <InputWrapper size={size}>
+    <InputWrapper>
       <IconWrapper>{icon}</IconWrapper>
       <StyledInput {...props} />
     </InputWrapper>
@@ -67,7 +73,7 @@ function Input({ size, ...props }: InputProps) {
 }
 
 Input.defaultProps = {
-  size: 'default',
+  htmlSize: 'default',
 }
 
 export default Input

@@ -10,8 +10,9 @@ export default {
 export const input = () => {
   return (
     <>
-      <Input placeholder="Basic usage" size="large" />
-      <Input placeholder="Basic usage" icon={<Icon name="search" />} />
+      <Input placeholder="large size" htmlSize="large" />
+      <Input placeholder="small size" htmlSize="small" />
+      <Input placeholder="defualt size" icon={<Icon name="search" />} />
     </>
   )
 }
