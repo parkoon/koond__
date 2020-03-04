@@ -3,7 +3,9 @@ const palette = {
   white: '#fff',
   outline: '#d9d9d9',
   shadow: 'rgb(49, 42, 117, 0.2)',
-
+  switch: {
+    off: '#ccc',
+  },
   button: {
     primary: '#312a75',
     outline: '#d9d9d9',
