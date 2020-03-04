@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Password from './Password'
 import { InputWrapper, StyledInput, PrefixIconWrapper, SuffixIconWrapper } from './styled/style'
 
 // Types
