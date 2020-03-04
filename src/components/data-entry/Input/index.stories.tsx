@@ -10,9 +10,12 @@ export default {
 export const input = () => {
   return (
     <>
-      <Input placeholder="large size" htmlSize="large" />
-      <Input placeholder="small size" htmlSize="small" />
-      <Input placeholder="defualt size" icon={<Icon name="search" />} />
+      <Input onChange={value => console.log(value)} placeholder="large size" htmlSize="large" />
+      <Input onChange={value => console.log(value)} placeholder="small size" htmlSize="small" />
+      <Input onChange={value => console.log(value)} placeholder="defualt size" icon={<Icon name="search" />} />
+      <Input.Password onChange={value => console.log(value)} />
+      <Input.Password onChange={value => console.log(value)} htmlSize="large" />
+      <Input.Password onChange={value => console.log(value)} htmlSize="small" />
     </>
   )
 }

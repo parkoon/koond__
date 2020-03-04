@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import Input, { InputProps } from './Input'
+import styled from 'styled-components'
 import palette from '../../../themes/palette'
-import Password from './Password'
+import Icon from '../../general/Icon'
 
 // Constants
 const INPUT_SIZE = {
@@ -13,21 +14,7 @@ const INPUT_SIZE = {
 // Functions
 const inputSize = ({ htmlSize }: InputProps) => `${INPUT_SIZE[htmlSize]} 11px`
 
-const InputWrapper = styled.span`
-  display: inline-block;
-  position: relative;
-  width: 100%;
-`
-const IconWrapper = styled.span`
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 7px;
-  transform: translateY(-50%);
-  color: ${palette.typography.grayscale[2]};
-`
-
-const StyledInput = styled.input<InputProps>`
+const StyledPasswordInput = styled.input`
   padding: ${inputSize};
   padding-left: ${({ icon }) => icon && '27px'};
   color: ${palette.typography.default};
@@ -55,17 +42,29 @@ const StyledInput = styled.input<InputProps>`
   }
 `
 
-// Types
-export type InputProps = {
-  placeholder?: string
-  htmlSize?: 'large' | 'defualt' | 'small'
-  icon?: React.ReactNode
-  onChange: (value: any) => void
-}
+const PasswordInputWrapper = styled.span`
+  display: inline-block;
+  position: relative;
+  width: 100%;
+`
 
-function Input({ onChange, ...props }: InputProps) {
+const IconWrapper = styled.span`
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  transform: translateY(-50%);
+  color: ${palette.typography.grayscale[2]};
+  padding: 4px;
+`
+
+function Password({ onChange, ...props }: InputProps) {
+  const [visible, setVisible] = useState(false)
   const [value, setValue] = useState()
-  const { icon } = props
+
+  const handleClick = () => {
+    setVisible(prevState => !prevState)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -73,17 +72,18 @@ function Input({ onChange, ...props }: InputProps) {
   }
 
   return (
-    <InputWrapper>
-      <IconWrapper>{icon}</IconWrapper>
-      <StyledInput value={value} onChange={handleChange} {...props} />
-    </InputWrapper>
+    <PasswordInputWrapper>
+      <StyledPasswordInput value={value} onChange={handleChange} type={visible ? 'text' : 'password'} {...props} />
+
+      <IconWrapper onClick={handleClick}>
+        <Icon name={visible ? 'visible' : 'invisible'} />
+      </IconWrapper>
+    </PasswordInputWrapper>
   )
 }
 
-Input.defaultProps = {
+Password.defaultProps = {
   htmlSize: 'default',
 }
 
-Input.Password = Password
-
-export default Input
+export default Password
