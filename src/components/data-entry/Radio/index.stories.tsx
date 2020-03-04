@@ -1,5 +1,5 @@
 import React from 'react'
-import { Radio, RadioGroup } from './'
+import { Radio } from './'
 
 export default {
   title: 'Data Entry',

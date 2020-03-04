@@ -5,6 +5,9 @@ import palette from '../../../themes/palette'
 const StyledRadio = styled.input`
   display: none;
 
+  &:checked + span {
+    border-color: ${palette.primary};
+  }
   &:checked + span::after {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
@@ -18,9 +21,13 @@ const StyledRadioIcon = styled.span`
   box-sizing: border-box;
   vertical-align: middle;
   border-radius: 50%;
-  border: 1px solid ${palette.primary};
+  border: 1px solid ${palette.outline};
   position: relative;
+  transition: 0.2s ease;
 
+  &:hover {
+    border-color: ${palette.primary};
+  }
   &::after {
     content: '';
     position: absolute;
