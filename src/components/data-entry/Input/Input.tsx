@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
-import Icon from '../../general/Icon'
 
 const InputWrapper = styled.span<InpuWrapperProps>`
   display: inline-block;
@@ -19,7 +18,7 @@ const IconWrapper = styled.span`
 
 const StyledInput = styled.input<InputProps>`
   padding: 4px 11px;
-  padding-left: 27px;
+  padding-left: ${({ icon }) => icon && '27px'};
   color: ${palette.typography.default};
   width: 100%;
   box-sizing: border-box;
@@ -53,11 +52,11 @@ type InpuWrapperProps = {
 }
 
 function Input({ size, ...props }: InputProps) {
+  const { icon } = props
+
   return (
     <InputWrapper size={size}>
-      <IconWrapper>
-        <Icon name="search" />
-      </IconWrapper>
+      <IconWrapper>{icon}</IconWrapper>
       <StyledInput {...props} />
     </InputWrapper>
   )
