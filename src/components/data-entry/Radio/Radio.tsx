@@ -16,8 +16,8 @@ const StyledRadio = styled.input`
 
 const StyledRadioIcon = styled.span`
   display: inline-block;
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   box-sizing: border-box;
   vertical-align: middle;
   border-radius: 50%;
@@ -31,8 +31,8 @@ const StyledRadioIcon = styled.span`
   &::after {
     content: '';
     position: absolute;
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     box-sizing: border-box;
     top: 50%;
