@@ -88,6 +88,8 @@ const styles = css`
 
   align-items: center;
 
+  outline: none;
+
   padding: ${buttonPadding};
   cursor: ${buttonCursor};
 
