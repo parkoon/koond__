@@ -1,18 +1,20 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import palette from '../../../themes/palette'
 
 const drawerPosition = ({ placement, visible, size }: DrawerStyleProps) => `${placement}:${visible ? 0 : `-${size}px`}`
 
 const StyledDrawer = styled.div<DrawerStyleProps>`
   position: fixed;
   top: 0;
+  ${drawerPosition};
   height: 100%;
   width: ${({ size }) => `${size}px`};
-  background: tomato;
+  background: ${palette.white};
   z-index: 9999;
   transition: 0.3s;
-
-  ${drawerPosition}
+  padding: 24px;
+  box-sizing: border-box;
 `
 
 const Dim = styled.div<DimStyleProps>`
