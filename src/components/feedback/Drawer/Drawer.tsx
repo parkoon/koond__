@@ -1,15 +1,34 @@
-import React, { useState, useCallback } from 'react'
-import styled from 'styled-components'
+import React from 'react'
+import styled, { css } from 'styled-components'
 
-const StyledDrawer = styled.div<DrawerStyleProps>`
+const commonStyle = css<DrawerStyleProps>`
   position: fixed;
   top: 0;
-  right: ${({ visible, size }) => (visible ? '0' : `-${size}px`)};
   height: 100%;
   width: ${({ size }) => `${size}px`};
   background: tomato;
   z-index: 9999;
   transition: 0.3s;
+`
+
+const StyledRightDrawer = styled.div<DrawerStyleProps>`
+  ${commonStyle}
+  right: ${({ visible, size }) => (visible ? '0' : `-${size}px`)};
+`
+
+const StyledLeftDrawer = styled.div<DrawerStyleProps>`
+  ${commonStyle}
+  left: ${({ visible, size }) => (visible ? '0' : `-${size}px`)};
+`
+
+const StyledTopDrawer = styled.div<DrawerStyleProps>`
+  ${commonStyle}
+  top: ${({ visible, size }) => (visible ? '0' : `-${size}px`)};
+`
+
+const StyledBottomDrawer = styled.div<DrawerStyleProps>`
+  ${commonStyle}
+  bottom: ${({ visible, size }) => (visible ? '0' : `-${size}px`)};
 `
 
 const Dim = styled.div<DimStyleProps>`
@@ -35,21 +54,60 @@ type DrawerProps = {
   children: React.ReactNode
   size: number
   visible?: boolean
+  placement: 'top' | 'bottom' | 'left' | 'right'
   onClose: () => void
 }
-function Drawer({ children, visible, onClose, ...props }: DrawerProps) {
+function Drawer({ children, visible, onClose, placement, ...props }: DrawerProps) {
+  console.log(placement)
+
+  const renderDrawer = () => {
+    switch (placement) {
+      case 'top':
+        return (
+          <StyledTopDrawer visible={visible} {...props}>
+            {children}
+          </StyledTopDrawer>
+        )
+      case 'bottom':
+        return (
+          <StyledBottomDrawer visible={visible} {...props}>
+            {children}
+          </StyledBottomDrawer>
+        )
+
+      case 'left':
+        return (
+          <StyledLeftDrawer visible={visible} {...props}>
+            {children}
+          </StyledLeftDrawer>
+        )
+
+      case 'right':
+        return (
+          <StyledRightDrawer visible={visible} {...props}>
+            {children}
+          </StyledRightDrawer>
+        )
+      default:
+        return (
+          <StyledLeftDrawer visible={visible} {...props}>
+            {children}
+          </StyledLeftDrawer>
+        )
+    }
+  }
+
   return (
     <>
       <Dim visible={visible} onClick={onClose} />
-      <StyledDrawer visible={visible} {...props}>
-        {children}
-      </StyledDrawer>
+      {renderDrawer()}
     </>
   )
 }
 
 Drawer.defaultProps = {
   visible: false,
+  placement: 'left',
 }
 
 export default Drawer
