@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import React, { useState } from 'react'
 import Drawer from './Drawer'
 import Button from '../../general/Button'
+import { Radio } from '../../data-entry/Radio'
 
 export default {
   title: 'Feedback',
@@ -8,8 +11,8 @@ export default {
 }
 
 export function drawer() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [visible, setVisible] = useState(false)
+  const [placement, setPlacement] = useState('left')
 
   const showDrawer = () => {
     setVisible(prevState => !prevState)
@@ -18,10 +21,22 @@ export function drawer() {
   const hideDrawer = () => {
     setVisible(false)
   }
+
+  const handleRadioChange = e => {
+    setPlacement(e.target.value)
+  }
   return (
     <>
+      <div>
+        <Radio name="pos" value="left" onChange={handleRadioChange} checked>
+          left
+        </Radio>
+        <Radio name="pos" value="right" onChange={handleRadioChange}>
+          right
+        </Radio>
+      </div>
       <Button onClick={showDrawer}>Open</Button>
-      <Drawer visible={visible} size={300} onClose={hideDrawer} placement="left">
+      <Drawer visible={visible} size={300} onClose={hideDrawer} placement={placement}>
         <p>Some contents here....</p>
         <p>Some contents here....</p>
         <p>Some contents here....</p>
