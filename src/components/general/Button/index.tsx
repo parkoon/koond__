@@ -18,6 +18,7 @@ type Props = {
   href?: string
   onlyIcon?: boolean
   htmlType?: 'submit' | 'button' | 'reset'
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
 // Constants
@@ -151,7 +152,7 @@ function Button({ children, htmlType, ...props }: Props) {
           {children}
         </AnchorButton>
       ) : (
-        <NoramlButton type={htmlType} {...props} disabled={isDisabled} onlyIcon={onlyIcon}>
+        <NoramlButton type={htmlType} disabled={isDisabled} onlyIcon={onlyIcon} {...props}>
           {icon}
           {/* 아이콘과 텍스트가 함께 있는 경우 여백 추가 */}
           {hasIconWithText && <Space />}
