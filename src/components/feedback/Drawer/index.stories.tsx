@@ -21,7 +21,7 @@ export function drawer() {
   return (
     <>
       <Button onClick={showDrawer}>Open</Button>
-      <Drawer visible={visible} size={300} onClose={hideDrawer}>
+      <Drawer visible={visible} size={300} onClose={hideDrawer} placement="left">
         <p>Some contents here....</p>
         <p>Some contents here....</p>
         <p>Some contents here....</p>
