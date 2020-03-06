@@ -10,16 +10,17 @@ type Props = {
   deleted?: boolean
   strong?: boolean
   size?: 'small' | 'large' | 'default'
+  color?: string
 }
 // Constants
 const FONT_SIZE = {
-  small: '12px',
-  default: '14px',
-  large: '16px',
+  small: '14px',
+  default: '16px',
+  large: '18px',
 }
 
 // Functions
-const fontColor = ({ type }: Props) => palette.typography[type]
+const fontColor = ({ type, color }: Props) => (color ? color : palette.typography[type])
 const textDecoration = ({ underline, deleted }: Props) => (underline ? 'underline' : deleted ? 'line-through' : '')
 const fontSize = ({ size }: Props) => FONT_SIZE[size]
 // Styled
