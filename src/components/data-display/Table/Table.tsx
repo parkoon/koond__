@@ -15,8 +15,8 @@ const TableRow = styled.tr`
     font-weight: 500;
     color: ${palette.grayscale[1]};
     background: #fafafa;
-    border-bottom: 1px solid ${palette.outline};
     padding: 16px;
+    border-bottom: 1px solid ${palette.outline};
   }
 
   &:hover {
@@ -25,6 +25,7 @@ const TableRow = styled.tr`
 
   td {
     padding: 16px;
+    border-bottom: 1px solid ${palette.outline};
 
     &:hover {
     }
