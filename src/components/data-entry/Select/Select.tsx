@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
 import Icon from '../../general/Icon'
@@ -32,7 +32,7 @@ const SelectWrapper = styled.span`
   }
 `
 
-const StyledIconWrapper = styled.span<IconWrapperProps>`
+const StyledArrowWrapper = styled.span<IconWrapperProps>`
   position: absolute;
   right: 0;
   top: 0;
@@ -75,6 +75,26 @@ const StyledOptionWrapper = styled.div`
   }
 `
 
+const StyledCancelWrapper = styled.span`
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 10px;
+  background: red;
+  border-radius: 50%;
+  padding: 4px;
+  box-sizing: border-box;
+  background: ${palette.grayscale[4]};
+  color: ${palette.white};
+  transition: 0.3s;
+
+  &:hover {
+    background: ${palette.grayscale[3]};
+  }
+`
+
 type IconWrapperProps = {
   checked: boolean
 }
@@ -83,12 +103,16 @@ function Select() {
   const [toggle, setToggle] = useState(false)
   const [currentOption, setCurrentOption] = useState('')
 
-  const handleCheck = () => {
+  const handleCheck = useCallback(() => {
     setToggle(prevToggle => !prevToggle)
-  }
-  const handleClick = e => {
+  }, [])
+
+  const handleCancel = useCallback(() => {
+    setCurrentOption('')
+  }, [])
+  const handleClick = useCallback(e => {
     setCurrentOption(e.target.value)
-  }
+  }, [])
   return (
     <>
       <label>
@@ -96,9 +120,6 @@ function Select() {
           <StyledInput type="checkbox" onChange={handleCheck} checked={toggle} />
           {currentOption}
 
-          <StyledIconWrapper checked={toggle}>
-            <Icon name="arrow-left" size={12} />
-          </StyledIconWrapper>
           <StyledOptionWrapper>
             <option value="Jack" onClick={handleClick} selected={currentOption === 'Jack'}>
               Jack
@@ -119,6 +140,16 @@ function Select() {
               Jong
             </option>
           </StyledOptionWrapper>
+
+          {currentOption ? (
+            <StyledCancelWrapper>
+              <Icon name="cancel" size={6} />
+            </StyledCancelWrapper>
+          ) : (
+            <StyledArrowWrapper checked={toggle} onClick={handleCancel}>
+              <Icon name="arrow-left" size={12} />
+            </StyledArrowWrapper>
+          )}
         </SelectWrapper>
       </label>
     </>

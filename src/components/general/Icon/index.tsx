@@ -26,6 +26,7 @@ const NormalIcon = styled.span<Props>`
     height: 100%;
     fill: currentColor;
     stroke: currentColor;
+    vertical-align: top;
   }
 `
 

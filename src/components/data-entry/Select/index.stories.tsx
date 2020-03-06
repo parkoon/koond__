@@ -7,5 +7,9 @@ export default {
 }
 
 export const select = () => {
-  return <Select />
+  return (
+    <>
+      <Select />
+    </>
+  )
 }
