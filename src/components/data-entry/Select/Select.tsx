@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
+import Icon from '../../general/Icon'
 
 const StyledInput = styled.input`
   width: 0;
@@ -13,7 +14,7 @@ const StyledInput = styled.input`
   }
 `
 
-const SelectWrapper = styled.span<SelectWrapperProps>`
+const SelectWrapper = styled.span`
   position: relative;
   display: inline-block;
   width: 200px;
@@ -29,17 +30,19 @@ const SelectWrapper = styled.span<SelectWrapperProps>`
   &:hover {
     border-color: ${palette.primary};
   }
-  &::after {
-    content: '>';
-    font-size: 18px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    color: ${palette.typography.grayscale[4]};
-    transition: 0.3s;
-    transform: ${props => (props.checked ? 'translateY(-50%) rotate(270deg)' : 'translateY(-50%) rotate(90deg)')};
-    margin-right: 10px;
-  }
+`
+
+const StyledIconWrapper = styled.span<IconWrapperProps>`
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 2px;
+  transition: 0.3s;
+  top: 50%;
+  margin-right: 10px;
+  color: ${palette.typography.grayscale[4]};
+
+  transform: ${props => (props.checked ? 'translateY(-50%) rotate(270deg)' : 'translateY(-50%) rotate(90deg)')};
 `
 
 const StyledOptionWrapper = styled.div`
@@ -72,7 +75,7 @@ const StyledOptionWrapper = styled.div`
   }
 `
 
-type SelectWrapperProps = {
+type IconWrapperProps = {
   checked: boolean
 }
 
@@ -89,9 +92,13 @@ function Select() {
   return (
     <>
       <label>
-        <SelectWrapper checked={toggle}>
+        <SelectWrapper>
           <StyledInput type="checkbox" onChange={handleCheck} checked={toggle} />
           {currentOption}
+
+          <StyledIconWrapper checked={toggle}>
+            <Icon name="arrow-left" size={12} />
+          </StyledIconWrapper>
           <StyledOptionWrapper>
             <option value="Jack" onClick={handleClick} selected={currentOption === 'Jack'}>
               Jack
