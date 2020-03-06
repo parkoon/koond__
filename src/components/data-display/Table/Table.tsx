@@ -1,10 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import palette from '../../../themes/palette'
 
+const stickyHeader = () => {
+  console.log('zz')
+  return `;`
+}
+
+const StyledTableWrapper = styled.div`
+  max-height: 240px;
+  overflow-y: scroll;
+`
 const StyledTable = styled.table`
   border-collapse: separate;
   border-spacing: 0;
+  width: 100%;
 `
 
 const TableRow = styled.tr`
@@ -17,6 +27,13 @@ const TableRow = styled.tr`
     background: #fafafa;
     padding: 16px;
     border-bottom: 1px solid ${palette.outline};
+
+    ${props =>
+      props.yScroll &&
+      css`
+        position: sticky;
+        top: 0;
+      `}
   }
 
   &:hover {
@@ -32,12 +49,17 @@ const TableRow = styled.tr`
   }
 `
 
-function Table() {
+type TableProps = {
+  loading?: boolean
+  yScroll?: boolean
+}
+
+function Table({ ...props }: TableProps) {
   return (
-    <>
+    <StyledTableWrapper>
       <StyledTable>
         <thead>
-          <TableRow>
+          <TableRow {...props}>
             <th>Name</th>
             <th>Age</th>
             <th>Address</th>
@@ -67,10 +89,42 @@ function Table() {
             <td>bla bal</td>
             <td>action</td>
           </TableRow>
+          <TableRow>
+            <td>parkoon</td>
+            <td>19</td>
+            <td>secret</td>
+            <td>bla bal</td>
+            <td>action</td>
+          </TableRow>
+          <TableRow>
+            <td>parkoon</td>
+            <td>19</td>
+            <td>secret</td>
+            <td>bla bal</td>
+            <td>action</td>
+          </TableRow>
+          <TableRow>
+            <td>parkoon</td>
+            <td>19</td>
+            <td>secret</td>
+            <td>bla bal</td>
+            <td>action</td>
+          </TableRow>
+          <TableRow>
+            <td>parkoon</td>
+            <td>19</td>
+            <td>secret</td>
+            <td>bla bal</td>
+            <td>action</td>
+          </TableRow>
         </tbody>
       </StyledTable>
-    </>
+    </StyledTableWrapper>
   )
+}
+
+Table.defaultProps = {
+  yScroll: false,
 }
 
 export default Table

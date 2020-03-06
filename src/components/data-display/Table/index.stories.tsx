@@ -10,6 +10,7 @@ export const table = () => {
   return (
     <>
       <Table />
+      <Table yScroll />
     </>
   )
 }
