@@ -7,6 +7,7 @@ type Props = {
   dangerouslySetInnerHTML?: any
   style?: React.CSSProperties
   spin?: boolean
+  size?: number
 }
 
 const rotation = keyframes`
@@ -17,8 +18,8 @@ const rotation = keyframes`
 
 const NormalIcon = styled.span<Props>`
   display: inline-block;
-  width: 1rem;
-  height: 1rem;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
 
   & > svg {
     width: 100%;
@@ -45,6 +46,10 @@ const Icon = ({ spin, ...props }: Props) => {
       )}
     </>
   )
+}
+
+Icon.defaultProps = {
+  size: 15,
 }
 
 export default Icon
