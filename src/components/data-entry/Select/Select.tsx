@@ -2,18 +2,6 @@ import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
 import Icon from '../../general/Icon'
-
-const StyledInput = styled.input`
-  width: 0;
-  height: 0;
-  opacity: 0;
-
-  &:checked + div {
-    opacity: 1;
-    height: 100px;
-  }
-`
-
 const SelectWrapper = styled.span`
   position: relative;
   display: inline-block;
@@ -21,7 +9,7 @@ const SelectWrapper = styled.span`
   height: 20px;
   border: 1px solid ${palette.outline};
   cursor: pointer;
-  padding: 6px 0px;
+  padding: 6px 10px;
   line-height: 1.5;
   color: ${palette.typography.grayscale[2]};
 
@@ -32,7 +20,7 @@ const SelectWrapper = styled.span`
   }
 `
 
-const StyledArrowWrapper = styled.span<IconWrapperProps>`
+const StyledArrowWrapper = styled.span`
   position: absolute;
   right: 0;
   top: 0;
@@ -48,12 +36,12 @@ const StyledArrowWrapper = styled.span<IconWrapperProps>`
 const StyledOptionWrapper = styled.div`
   position: absolute;
   user-select: none;
-  top: 50px;
-  height: 0;
-  opacity: 0;
+  top: 35px;
+  left: 0;
+  height: ${({ checked }) => (checked ? '100px' : 0)};
+  opacity: ${({ checked }) => (checked ? 1 : 0)};
   width: 100%;
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
   box-sizing: border-box;
   overflow-y: auto;
   transition: 0.2s;
@@ -95,19 +83,16 @@ const StyledCancelWrapper = styled.span`
   }
 `
 
-type IconWrapperProps = {
-  checked: boolean
-}
-
 function Select() {
   const [toggle, setToggle] = useState(false)
   const [currentOption, setCurrentOption] = useState('')
 
-  const handleCheck = useCallback(() => {
+  const handleCheck = useCallback(e => {
     setToggle(prevToggle => !prevToggle)
   }, [])
 
-  const handleCancel = useCallback(() => {
+  const handleCancel = useCallback(e => {
+    e.stopPropagation()
     setCurrentOption('')
   }, [])
   const handleClick = useCallback(e => {
@@ -115,12 +100,10 @@ function Select() {
   }, [])
   return (
     <>
-      <label>
-        <SelectWrapper>
-          <StyledInput type="checkbox" onChange={handleCheck} checked={toggle} />
+      <>
+        <SelectWrapper onClick={handleCheck}>
           {currentOption}
-
-          <StyledOptionWrapper>
+          <StyledOptionWrapper checked={toggle}>
             <option value="Jack" onClick={handleClick} selected={currentOption === 'Jack'}>
               Jack
             </option>
@@ -142,16 +125,16 @@ function Select() {
           </StyledOptionWrapper>
 
           {currentOption ? (
-            <StyledCancelWrapper>
+            <StyledCancelWrapper onClick={handleCancel}>
               <Icon name="cancel" size={6} />
             </StyledCancelWrapper>
           ) : (
-            <StyledArrowWrapper checked={toggle} onClick={handleCancel}>
+            <StyledArrowWrapper checked={toggle}>
               <Icon name="arrow-left" size={12} />
             </StyledArrowWrapper>
           )}
         </SelectWrapper>
-      </label>
+      </>
     </>
   )
 }
