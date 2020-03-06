@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import palette from '../../../themes/palette'
 import Icon from '../../general/Icon'
@@ -83,9 +83,22 @@ const StyledCancelWrapper = styled.span`
   }
 `
 
-function Select() {
+type option = {
+  name: string
+  value: string
+}
+type SelectProps = {
+  options: option[]
+  onChange: (value: string) => void
+}
+
+function Select({ options, onChange }: SelectProps) {
   const [toggle, setToggle] = useState(false)
   const [currentOption, setCurrentOption] = useState('')
+
+  useEffect(() => {
+    onChange(currentOption)
+  }, [currentOption, onChange])
 
   const handleCheck = useCallback(e => {
     setToggle(prevToggle => !prevToggle)
@@ -98,31 +111,20 @@ function Select() {
   const handleClick = useCallback(e => {
     setCurrentOption(e.target.value)
   }, [])
+
+  const renderOptions = useCallback(() => {
+    return options.map(option => (
+      <option value={option.value} onClick={handleClick} selected={currentOption === option.value}>
+        {option.name}
+      </option>
+    ))
+  }, [currentOption, handleClick, options])
   return (
     <>
       <>
         <SelectWrapper onClick={handleCheck}>
           {currentOption}
-          <StyledOptionWrapper checked={toggle}>
-            <option value="Jack" onClick={handleClick} selected={currentOption === 'Jack'}>
-              Jack
-            </option>
-            <option value="Lucy" onClick={handleClick} selected={currentOption === 'Lucy'}>
-              Lucy
-            </option>
-            <option value="Parkoon" onClick={handleClick} selected={currentOption === 'Parkoon'}>
-              Parkoon
-            </option>
-            <option value="Hello" onClick={handleClick} selected={currentOption === 'Hello'}>
-              Helo
-            </option>
-            <option value="Jimi" onClick={handleClick} selected={currentOption === 'Jimi'}>
-              Jimi
-            </option>
-            <option value="Jong" onClick={handleClick} selected={currentOption === 'Jong'}>
-              Jong
-            </option>
-          </StyledOptionWrapper>
+          <StyledOptionWrapper checked={toggle}>{renderOptions()}</StyledOptionWrapper>
 
           {currentOption ? (
             <StyledCancelWrapper onClick={handleCancel}>

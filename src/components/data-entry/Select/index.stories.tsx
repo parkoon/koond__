@@ -6,10 +6,28 @@ export default {
   component: Select,
 }
 
+const options = [
+  {
+    name: 'A',
+    value: 'A',
+  },
+  {
+    name: 'B',
+    value: 'B',
+  },
+  {
+    name: 'C',
+    value: 'C',
+  },
+]
+
 export const select = () => {
+  const handleChange = value => {
+    console.log('value...', value)
+  }
   return (
     <>
-      <Select />
+      <Select options={options} onChange={handleChange} />
     </>
   )
 }
