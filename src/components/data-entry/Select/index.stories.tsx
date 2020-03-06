@@ -27,7 +27,7 @@ export const select = () => {
   }
   return (
     <>
-      <Select options={options} onChange={handleChange} />
+      <Select options={options} onChange={handleChange} defaultValue="A" />
     </>
   )
 }

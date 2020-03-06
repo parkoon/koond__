@@ -90,11 +90,12 @@ type option = {
 type SelectProps = {
   options: option[]
   onChange: (value: string) => void
+  defaultValue?: string
 }
 
-function Select({ options, onChange }: SelectProps) {
+function Select({ options, onChange, defaultValue }: SelectProps) {
   const [toggle, setToggle] = useState(false)
-  const [currentOption, setCurrentOption] = useState('')
+  const [currentOption, setCurrentOption] = useState(defaultValue)
 
   useEffect(() => {
     onChange(currentOption)
