@@ -10,6 +10,10 @@ const items = [
     name: 'Random Name #1',
     description: 'Probably the most random thing you have ever seen!',
   },
+  {
+    name: 'Random Name #2',
+    description: 'Hello World!',
+  },
 ]
 
 export const carousel = () => {
@@ -17,10 +21,12 @@ export const carousel = () => {
     <>
       <Carousel>
         {items.map(item => (
-          <div>
-            <h2>{item.name}</h2>
-            <p>item.desctription</p>
-          </div>
+          <>
+            <div>
+              <h2>{item.name}</h2>
+              <p>item.desctription</p>
+            </div>
+          </>
         ))}
       </Carousel>
     </>
