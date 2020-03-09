@@ -20,7 +20,7 @@ const StyledRadio = styled.input.attrs({ type: 'radio', name: 'rating' })`
 const StyledLabel = styled.label`
   color: #ddd;
   float: right;
-
+  margin-right: 4px;
   cursor: pointer;
 
   transition: 0.3s;
@@ -35,18 +35,26 @@ const StyledLabel = styled.label`
   }
 `
 
-const renderStars = () =>
-  Array.from(new Array(5)).map((_, idx) => (
+const renderStars = (count: number) =>
+  Array.from(new Array(count)).map((_, idx) => (
     <>
       <StyledRadio id={`star${idx}`} value={idx} />
       <StyledLabel htmlFor={`star${idx}`}>
-        <Icon name="star" />
+        <Icon name="star" size={18} />
       </StyledLabel>
     </>
   ))
 
-function Rate() {
-  return <StyledFieldSet>{renderStars()}</StyledFieldSet>
+type StarProps = {
+  count?: number
+}
+
+function Rate({ count }: StarProps) {
+  return <StyledFieldSet>{renderStars(count)}</StyledFieldSet>
+}
+
+Rate.defaultProps = {
+  count: 5,
 }
 
 export default Rate

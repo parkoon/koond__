@@ -9,7 +9,7 @@ export default {
 export const rate = () => {
   return (
     <>
-      <Rate />
+      <Rate count={5} />
     </>
   )
 }
