@@ -3,7 +3,14 @@ import styled, { css } from 'styled-components'
 import palette from '../../../themes/palette'
 import Icon from '../../general/Icon'
 import Typography from '../../general/Typography'
-import { object } from '@storybook/addon-knobs'
+
+const TABLE_SIZE = {
+  default: '16px',
+  middle: '12px 8px',
+  small: '8px',
+}
+
+const tableSize = ({ size }) => TABLE_SIZE[size]
 
 const StyledEmpty = styled.div`
   display: flex;
@@ -33,12 +40,16 @@ const TableRow = styled.tr`
   cursor: default;
   transition: background 0.3s;
 
+  th,
+  td {
+    padding: ${tableSize};
+    border-bottom: 1px solid ${palette.outline};
+  }
+
   th {
     font-weight: 500;
     color: ${palette.grayscale[1]};
     background: #fafafa;
-    padding: 16px;
-    border-bottom: 1px solid ${palette.outline};
 
     ${props =>
       props.yScroll &&
@@ -53,8 +64,6 @@ const TableRow = styled.tr`
   }
 
   td {
-    padding: 16px;
-    border-bottom: 1px solid ${palette.outline};
     text-align: center;
 
     &:hover {
@@ -72,6 +81,7 @@ type TableProps = {
   columns: columProps[]
   dataSource?: object[] | undefined
   tableLayout?: 'fixed' | undefined
+  size?: 'small' | 'middle' | 'default'
 }
 
 function Table({ columns, tableLayout, dataSource, ...props }: TableProps) {
@@ -87,7 +97,7 @@ function Table({ columns, tableLayout, dataSource, ...props }: TableProps) {
         <tbody>
           {dataSource ? (
             dataSource.map((data, idx) => (
-              <TableRow key={idx}>
+              <TableRow key={idx} {...props}>
                 {columnKeys.map(key => (
                   <td key={key}>{data[columns[key].key]}</td>
                 ))}
@@ -110,6 +120,7 @@ function Table({ columns, tableLayout, dataSource, ...props }: TableProps) {
 Table.defaultProps = {
   yScroll: false,
   tableLayout: undefined,
+  size: 'default',
 }
 
 export default Table

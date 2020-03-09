@@ -54,6 +54,7 @@ export const table = () => {
     <>
       <Table columns={columns} dataSource={null} />
       <Table columns={columns} dataSource={data} yScroll tableLayout="fixed" />
+      <Table columns={columns} dataSource={data} size="small" />
       {/* <Table yScroll /> */}
     </>
   )
