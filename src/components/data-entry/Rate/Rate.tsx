@@ -66,7 +66,6 @@ function Rate({ count, disabled, defaultValue }: StarProps) {
       Array.from(new Array(count)).map((_, idx) => (
         <>
           <StyledRadio id={`star${idx}`} value={idx} disabled={disabled} />
-          {defaultValue}
           <StyledLabel
             htmlFor={`star${idx}`}
             disabled={disabled}
@@ -77,7 +76,7 @@ function Rate({ count, disabled, defaultValue }: StarProps) {
           </StyledLabel>
         </>
       )),
-    [count, defaultValue, disabled, reversedDefaultValue]
+    [count, disabled, reversedDefaultValue]
   )
   return <StyledFieldSet>{renderStars()}</StyledFieldSet>
 }
