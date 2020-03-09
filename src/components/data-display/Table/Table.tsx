@@ -21,7 +21,22 @@ const StyledEmpty = styled.div`
   color: ${palette.grayscale[4]};
 `
 
+const StyledLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.3s;
+  opacity: ${props => (props.loading ? 0.4 : 0)};
+  background: ${palette.white};
+`
+
 const StyledTableWrapper = styled.div`
+  position: relative;
   ${props =>
     props.yScroll &&
     css`
@@ -84,7 +99,7 @@ type TableProps = {
   size?: 'small' | 'middle' | 'default'
 }
 
-function Table({ columns, tableLayout, dataSource, ...props }: TableProps) {
+function Table({ columns, loading, tableLayout, dataSource, ...props }: TableProps) {
   const { yScroll } = props
 
   const columnKeys = Object.keys(columns)
@@ -113,6 +128,10 @@ function Table({ columns, tableLayout, dataSource, ...props }: TableProps) {
           )}
         </tbody>
       </StyledTable>
+
+      <StyledLoading loading={loading}>
+        <Icon name="loading" spin size={20} />
+      </StyledLoading>
     </StyledTableWrapper>
   )
 }
@@ -121,6 +140,7 @@ Table.defaultProps = {
   yScroll: false,
   tableLayout: undefined,
   size: 'default',
+  loading: false,
 }
 
 export default Table
