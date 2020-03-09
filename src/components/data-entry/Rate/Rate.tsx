@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import Icon from '../../general/Icon'
 import palette from '../../../themes/palette'
@@ -35,26 +35,30 @@ const StyledLabel = styled.label`
   }
 `
 
-const renderStars = (count: number) =>
-  Array.from(new Array(count)).map((_, idx) => (
-    <>
-      <StyledRadio id={`star${idx}`} value={idx} />
-      <StyledLabel htmlFor={`star${idx}`}>
-        <Icon name="star" size={18} />
-      </StyledLabel>
-    </>
-  ))
-
 type StarProps = {
   count?: number
+  disabled?: boolean
 }
 
 function Rate({ count }: StarProps) {
-  return <StyledFieldSet>{renderStars(count)}</StyledFieldSet>
+  const renderStars = useCallback(
+    () =>
+      Array.from(new Array(count)).map((_, idx) => (
+        <>
+          <StyledRadio id={`star${idx}`} value={idx} />
+          <StyledLabel htmlFor={`star${idx}`}>
+            <Icon name="star" size={18} />
+          </StyledLabel>
+        </>
+      )),
+    [count]
+  )
+  return <StyledFieldSet>{renderStars()}</StyledFieldSet>
 }
 
 Rate.defaultProps = {
   count: 5,
+  disabled: false,
 }
 
 export default Rate
