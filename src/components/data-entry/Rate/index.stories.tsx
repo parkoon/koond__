@@ -9,7 +9,8 @@ export default {
 export const rate = () => {
   return (
     <>
-      <Rate count={5} />
+      {/* <Rate count={5} /> */}
+      <Rate count={5} defaultValue={4} disabled />
     </>
   )
 }
