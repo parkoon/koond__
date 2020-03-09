@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { v1 as uuidv1 } from 'uuid'
 import styled, { css } from 'styled-components'
 import Icon from '../../general/Icon'
 import palette from '../../../themes/palette'
@@ -58,25 +59,27 @@ function Rate({ count, disabled, defaultValue }: StarProps) {
   /* Exception */
   if (count < defaultValue) throw Error('별의 숫자보다 높은 기본 값을 입력하셨습니다.')
 
+  const id = uuidv1()
+
   /* default 값에 따라 색을 입힙니다. UI가 반전되어 있으므로, 값고 반전 시켜줍니다.*/
   const reversedDefaultValue = count - defaultValue
 
   const renderStars = useCallback(
     () =>
       Array.from(new Array(count)).map((_, idx) => (
-        <>
-          <StyledRadio id={`star${idx}`} value={idx} disabled={disabled} />
+        <React.Fragment key={`${id}-star${idx}`}>
+          <StyledRadio id={`${id}-star${idx}`} value={idx} disabled={disabled} />
           <StyledLabel
-            htmlFor={`star${idx}`}
+            htmlFor={`${id}-star${idx}`}
             disabled={disabled}
             /* default 값에 따라 색을 입힙니다. UI가 반전되어 있으므로, 값고 반전 시켜줍니다.*/
             defaultValue={idx + 1 === reversedDefaultValue}
           >
             <Icon name="star" size={18} />
           </StyledLabel>
-        </>
+        </React.Fragment>
       )),
-    [count, disabled, reversedDefaultValue]
+    [count, disabled, id, reversedDefaultValue]
   )
   return <StyledFieldSet>{renderStars()}</StyledFieldSet>
 }
