@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { v1 as uuidv1 } from 'uuid'
 import styled, { css } from 'styled-components'
+import { fillArrayReverse } from '../../../helpers/fillArray'
 import Icon from '../../general/Icon'
 import palette from '../../../themes/palette'
 
@@ -53,33 +54,33 @@ type StarProps = {
   count?: number
   disabled?: boolean
   defaultValue?: number
+  onChange?: (value: string) => void
 }
 
-function Rate({ count, disabled, defaultValue }: StarProps) {
+function Rate({ count, disabled, onChange, defaultValue }: StarProps) {
   /* Exception */
   if (count < defaultValue) throw Error('별의 숫자보다 높은 기본 값을 입력하셨습니다.')
 
+  /* count 5 -> [5, 4, 3, 2, 1] */
+  const reversedStars = fillArrayReverse(count)
+
   const id = uuidv1()
 
-  /* default 값에 따라 색을 입힙니다. UI가 반전되어 있으므로, 값고 반전 시켜줍니다.*/
-  const reversedDefaultValue = count - defaultValue
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
 
   const renderStars = useCallback(
     () =>
-      Array.from(new Array(count)).map((_, idx) => (
-        <React.Fragment key={`${id}-star${idx}`}>
-          <StyledRadio id={`${id}-star${idx}`} value={idx} disabled={disabled} />
-          <StyledLabel
-            htmlFor={`${id}-star${idx}`}
-            disabled={disabled}
-            /* default 값에 따라 색을 입힙니다. UI가 반전되어 있으므로, 값고 반전 시켜줍니다.*/
-            defaultValue={idx + 1 === reversedDefaultValue}
-          >
+      reversedStars.map(star => (
+        <React.Fragment key={`${id}-star${star}`}>
+          <StyledRadio id={`${id}-star${star}`} value={star} disabled={disabled} onChange={handleChange} />
+          <StyledLabel htmlFor={`${id}-star${star}`} disabled={disabled} defaultValue={star === defaultValue}>
             <Icon name="star" size={18} />
           </StyledLabel>
         </React.Fragment>
       )),
-    [count, disabled, id, reversedDefaultValue]
+    [defaultValue, disabled, handleChange, id, reversedStars]
   )
   return <StyledFieldSet>{renderStars()}</StyledFieldSet>
 }
@@ -88,6 +89,9 @@ Rate.defaultProps = {
   count: 5,
   disabled: false,
   defaultValue: 0,
+  onChange: () => {
+    console.warn('onChange function is not defined')
+  },
 }
 
 export default Rate
