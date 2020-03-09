@@ -25,7 +25,8 @@ const StyledTableWrapper = styled.div`
 const StyledTable = styled.table`
   border-collapse: collapse;
   width: 100%;
-  table-layout: auto;
+
+  table-layout: ${props => (props.tableLayout === 'fixed' ? 'fixed' : 'auto')};
 `
 
 const TableRow = styled.tr`
@@ -70,15 +71,16 @@ type TableProps = {
   yScroll?: boolean
   columns: columProps[]
   dataSource?: object[] | undefined
+  tableLayout?: 'fixed' | undefined
 }
 
-function Table({ columns, dataSource, ...props }: TableProps) {
+function Table({ columns, tableLayout, dataSource, ...props }: TableProps) {
   const { yScroll } = props
 
   const columnKeys = Object.keys(columns)
   return (
     <StyledTableWrapper yScroll={yScroll}>
-      <StyledTable>
+      <StyledTable tableLayout={tableLayout}>
         <thead>
           <TableRow {...props}>{columns && columns.map(col => <th key={col.key}>{col.title}</th>)}</TableRow>
         </thead>
@@ -107,6 +109,7 @@ function Table({ columns, dataSource, ...props }: TableProps) {
 
 Table.defaultProps = {
   yScroll: false,
+  tableLayout: undefined,
 }
 
 export default Table
