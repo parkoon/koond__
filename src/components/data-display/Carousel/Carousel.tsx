@@ -4,8 +4,34 @@ import styled from 'styled-components'
 import CarouselItem from './CarouselItem'
 import palette from '../../../themes/palette'
 
-const StyledCarouselWrapper = styled.div``
+type CarouselItemWrapperProps = {
+  active: number
+}
+const CarouselItemWrapper = styled.ul<CarouselItemWrapperProps>`
+    
+  display: flex;
+  background: red;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  transition: .3s;
+
+  /* transform: translateX(-100px); */
+  transform: ${props => `translateX(${props.active * -180}px)`}
+  }};
+`
+
+const StyledCarouselWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
 const StyledIndicatorWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
   ul {
     display: flex;
     list-style: none;
@@ -35,6 +61,13 @@ const StyledIndicatorLabel = styled.label`
   transition: 0.2s;
 `
 
+const StyledTrack = styled.div`
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+`
+
 type CarouselProps = {
   children: React.ReactNode
 }
@@ -43,35 +76,38 @@ function Carousel({ children }: CarouselProps) {
   const [active, setActive] = useState(0)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('e.target.value,', e.target.value)
     setActive(Number(e.target.value))
   }
 
   return (
     <StyledCarouselWrapper>
-      {Array.isArray(children) ? (
-        children.map((child, index) => <CarouselItem key={index} child={child} active={active === index} />)
-      ) : (
-        <CarouselItem key={0} child={children} active={true} />
-      )}
+      <StyledTrack>
+        <CarouselItemWrapper active={active}>
+          {Array.isArray(children) ? (
+            children.map((child, index) => <CarouselItem key={index} child={child} active={true} />)
+          ) : (
+            <CarouselItem key={0} child={children} active={true} />
+          )}
+        </CarouselItemWrapper>
+      </StyledTrack>
 
       <StyledIndicatorWrapper>
         <ul>
           <li>
-            <StyledIndicator id={'1'} value={0} onChange={handleChange} checked={active === 0} />
+            <StyledIndicator id={'1'} value={0} onChange={handleChange} />
             <StyledIndicatorLabel htmlFor={'1'} />
           </li>
           <li>
-            <StyledIndicator id={'2'} value={1} onChange={handleChange} checked={active === 1} />
+            <StyledIndicator id={'2'} value={1} onChange={handleChange} />
             <StyledIndicatorLabel htmlFor={'2'} />
           </li>
 
           <li>
-            <StyledIndicator id={'3'} value={2} onChange={handleChange} checked={active === 2} />
+            <StyledIndicator id={'3'} value={2} onChange={handleChange} />
             <StyledIndicatorLabel htmlFor={'3'} />
           </li>
           <li>
-            <StyledIndicator id={'4'} value={3} onChange={handleChange} checked={active === 3} />
+            <StyledIndicator id={'4'} value={3} onChange={handleChange} />
             <StyledIndicatorLabel htmlFor={'4'} />
           </li>
         </ul>

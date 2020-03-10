@@ -4,8 +4,8 @@ import styled from 'styled-components'
 type StyledCarouselItemWrapperProps = {
   active: boolean
 }
-const StyledCarouselItemWrapper = styled.div<StyledCarouselItemWrapperProps>`
-  display: ${props => (props.active ? 'inline-block' : 'none')};
+const StyledCarouselItemWrapper = styled.li<StyledCarouselItemWrapperProps>`
+  /* display: ${props => (props.active ? 'inline-block' : 'none')}; */
 `
 
 type CarouselItemProps = {

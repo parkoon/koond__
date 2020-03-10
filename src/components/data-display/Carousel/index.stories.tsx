@@ -30,7 +30,7 @@ export const carousel = () => {
       <Carousel>
         {items.map(item => (
           <>
-            <div>
+            <div style={{ background: 'tomato', color: 'white' }}>
               <h2>{item.name}</h2>
               <p>item.desctription</p>
             </div>
