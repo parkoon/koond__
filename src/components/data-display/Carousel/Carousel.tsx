@@ -21,23 +21,22 @@ const CarouselItemWrapper = styled.ul<CarouselItemWrapperProps>`
   transform: ${props => `translateX(${props.active * -props.slideWidth}px)`};
 `
 
-const StyledCarouselWrapper = styled.div``
+const StyledCarouselWrapper = styled.div`
+  position: relative;
+`
 const StyledIndicatorWrapper = styled.div`
   position: absolute;
-  bottom: 0;
-  right: 0;
-  ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+  bottom: 12px;
+  left: 50%;
+
+  transform: translateX(-50%);
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 `
 const StyledIndicator = styled.input.attrs({ type: 'radio', name: 'carousel' })`
-  /* width: 0;
-  height: 0;
-  opacity: 0; */
-
+  display: none;
   &:checked + label {
     width: 32px;
     background: ${palette.primary};
@@ -47,12 +46,18 @@ const StyledIndicator = styled.input.attrs({ type: 'radio', name: 'carousel' })`
 const StyledIndicatorLabel = styled.label`
   display: inline-block;
   width: 24px;
-  height: 4px;
+  height: 6px;
+  padding: 3px;
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.3);
-  cursor: hover;
-  margin-right: 12px;
   transition: 0.2s;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-right: 7px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
 `
 
 const StyledSlideTrack = styled.div`
@@ -104,25 +109,23 @@ function Carousel({ children }: CarouselProps) {
       </StyledSlideTrack>
 
       <StyledIndicatorWrapper>
-        <ul>
-          <li>
-            <StyledIndicator id={'1'} value={0} onChange={handleChange} checked={active === 0} />
-            <StyledIndicatorLabel htmlFor={'1'} />
-          </li>
-          <li>
-            <StyledIndicator id={'2'} value={1} onChange={handleChange} checked={active === 1} />
-            <StyledIndicatorLabel htmlFor={'2'} />
-          </li>
+        <li>
+          <StyledIndicator id={'1'} value={0} onChange={handleChange} checked={active === 0} />
+          <StyledIndicatorLabel htmlFor={'1'} />
+        </li>
+        <li>
+          <StyledIndicator id={'2'} value={1} onChange={handleChange} checked={active === 1} />
+          <StyledIndicatorLabel htmlFor={'2'} />
+        </li>
 
-          <li>
-            <StyledIndicator id={'3'} value={2} onChange={handleChange} checked={active === 2} />
-            <StyledIndicatorLabel htmlFor={'3'} />
-          </li>
-          <li>
-            <StyledIndicator id={'4'} value={3} onChange={handleChange} checked={active === 3} />
-            <StyledIndicatorLabel htmlFor={'4'} />
-          </li>
-        </ul>
+        <li>
+          <StyledIndicator id={'3'} value={2} onChange={handleChange} checked={active === 2} />
+          <StyledIndicatorLabel htmlFor={'3'} />
+        </li>
+        <li>
+          <StyledIndicator id={'4'} value={3} onChange={handleChange} checked={active === 3} />
+          <StyledIndicatorLabel htmlFor={'4'} />
+        </li>
       </StyledIndicatorWrapper>
     </StyledCarouselWrapper>
   )

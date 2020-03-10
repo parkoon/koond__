@@ -13,7 +13,7 @@ const StyledItem = styled.div`
   flex-direction: column;
   text-align: center;
   height: 320px;
-  background: #364d79;
+  background: #1abc9c;
   overflow: hidden;
   color: #fff;
 `
