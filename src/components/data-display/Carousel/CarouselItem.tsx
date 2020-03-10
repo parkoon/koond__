@@ -6,7 +6,7 @@ type StyledCarouselItemWrapperProps = {
   slideWidth: number
 }
 const StyledCarouselItemWrapper = styled.li<StyledCarouselItemWrapperProps>`
-  display: inline-block;
+  display: ${props => (props.active ? 'inline-block' : 'none')};
   width: ${props => props.slideWidth}px;
 `
 

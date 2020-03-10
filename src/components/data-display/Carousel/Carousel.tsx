@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import styled from 'styled-components'
 
 import CarouselItem from './CarouselItem'
@@ -6,8 +6,8 @@ import Indicator from './Indicator'
 
 type CarouselItemWrapperProps = {
   active: number
-  slideWidth: number
-  totalWidth: number
+  slideWidth?: number
+  totalWidth?: number
 }
 const CarouselItemWrapper = styled.ul<CarouselItemWrapperProps>`
   margin: 0;
@@ -24,7 +24,27 @@ const CarouselItemWrapper = styled.ul<CarouselItemWrapperProps>`
 const StyledCarouselWrapper = styled.div`
   position: relative;
 `
+type StyledFadeWrapper = {
+  fade: boolean
+}
 
+const StyledFadeWrapper = styled.div<StyledFadeWrapper>`
+  position: relative;
+  transition: 0.4s ease;
+  opacity: ${props => (props.fade ? 0 : 1)};
+
+  /* &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transition: .4s ease;
+
+    background: ${props => (props.fade ? `rgba(0,0,0,.9)` : `rgba(0,0,0,0.0)`)};
+  } */
+`
 const StyledSlideTrack = styled.div`
   width: 100%;
   height: 100%;
@@ -35,20 +55,25 @@ type CarouselProps = {
   children: React.ReactNode
 }
 
+let timer = null
+
 function Carousel({ children }: CarouselProps) {
   const [active, setActive] = useState(0)
-
+  const [fade, setFade] = useState(false)
   const [slideWidth, setSlideWidth] = useState(window.innerWidth)
-
-  const slideCount = React.Children.count(children)
-
-  const totalSlideWidth = slideWidth * slideCount
 
   const slideWrapperRef = useRef(null)
 
-  const handleChange = (value: number) => {
-    setActive(value)
-  }
+  const slideCount = React.Children.count(children)
+  const totalSlideWidth = slideWidth * slideCount
+
+  const handleChange = useCallback((value: number) => {
+    setFade(true)
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => {
+      setActive(value)
+    }, 400)
+  }, [])
 
   const handleResize = () => {
     setSlideWidth(window.innerWidth)
@@ -61,9 +86,25 @@ function Carousel({ children }: CarouselProps) {
     }
   }, [])
 
+  useEffect(() => {
+    setFade(false)
+  }, [active])
+
   return (
     <StyledCarouselWrapper>
-      <StyledSlideTrack>
+      <StyledFadeWrapper fade={fade}>
+        <CarouselItemWrapper active={active} ref={slideWrapperRef}>
+          {Array.isArray(children) ? (
+            children.map((child, index) => (
+              <CarouselItem active={active === index} key={index} child={child} slideWidth={slideWidth} />
+            ))
+          ) : (
+            <CarouselItem key={0} child={children} slideWidth={slideWidth} />
+          )}
+        </CarouselItemWrapper>
+      </StyledFadeWrapper>
+
+      {/* <StyledSlideTrack>
         <CarouselItemWrapper active={active} ref={slideWrapperRef} totalWidth={totalSlideWidth} slideWidth={slideWidth}>
           {Array.isArray(children) ? (
             children.map((child, index) => <CarouselItem key={index} child={child} slideWidth={slideWidth} />)
@@ -71,7 +112,7 @@ function Carousel({ children }: CarouselProps) {
             <CarouselItem key={0} child={children} slideWidth={slideWidth} />
           )}
         </CarouselItemWrapper>
-      </StyledSlideTrack>
+      </StyledSlideTrack> */}
       <Indicator onChange={handleChange} active={active} count={slideCount} />
     </StyledCarouselWrapper>
   )
