@@ -8,7 +8,6 @@ type CarouselItemWrapperProps = {
   active: number
 }
 const CarouselItemWrapper = styled.ul<CarouselItemWrapperProps>`
-    
   display: flex;
   background: red;
 
@@ -16,11 +15,10 @@ const CarouselItemWrapper = styled.ul<CarouselItemWrapperProps>`
   padding: 0;
   list-style: none;
 
-  transition: .3s;
+  transition: 0.3s;
 
   /* transform: translateX(-100px); */
-  transform: ${props => `translateX(${props.active * -180}px)`}
-  }};
+  transform: ${props => `translateX(${props.active * -180}px)`};
 `
 
 const StyledCarouselWrapper = styled.div`
