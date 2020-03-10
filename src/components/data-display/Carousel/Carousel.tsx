@@ -40,7 +40,12 @@ type CarouselProps = {
 }
 
 function Carousel({ children }: CarouselProps) {
-  const [active, setAtice] = useState(0)
+  const [active, setActive] = useState(0)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('e.target.value,', e.target.value)
+    setActive(Number(e.target.value))
+  }
 
   return (
     <StyledCarouselWrapper>
@@ -53,20 +58,20 @@ function Carousel({ children }: CarouselProps) {
       <StyledIndicatorWrapper>
         <ul>
           <li>
-            <StyledIndicator id={'1'} />
+            <StyledIndicator id={'1'} value={0} onChange={handleChange} checked={active === 0} />
             <StyledIndicatorLabel htmlFor={'1'} />
           </li>
           <li>
-            <StyledIndicator id={'2'} />
+            <StyledIndicator id={'2'} value={1} onChange={handleChange} checked={active === 1} />
             <StyledIndicatorLabel htmlFor={'2'} />
           </li>
 
           <li>
-            <StyledIndicator id={'3'} />
+            <StyledIndicator id={'3'} value={2} onChange={handleChange} checked={active === 2} />
             <StyledIndicatorLabel htmlFor={'3'} />
           </li>
           <li>
-            <StyledIndicator id={'4'} />
+            <StyledIndicator id={'4'} value={3} onChange={handleChange} checked={active === 3} />
             <StyledIndicatorLabel htmlFor={'4'} />
           </li>
         </ul>

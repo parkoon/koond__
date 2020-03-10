@@ -7,12 +7,20 @@ export default {
 
 const items = [
   {
-    name: 'Random Name #1',
-    description: 'Probably the most random thing you have ever seen!',
+    name: 'Carousel #1',
+    description: 'This is description #1',
   },
   {
-    name: 'Random Name #2',
-    description: 'Hello World!',
+    name: 'Carousel #2',
+    description: 'This is description #2',
+  },
+  {
+    name: 'Carousel #3',
+    description: 'This is description #3',
+  },
+  {
+    name: 'Carousel #4',
+    description: 'This is description #4',
   },
 ]
 
