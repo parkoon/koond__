@@ -1,8 +1,15 @@
-export function fillArray(count: number): number[] {
+export function fillArray(count: number, fromZero?: boolean): number[] {
   let array = []
-  let i = 1
-  for (; i <= count; i++) {
-    array.push(i)
+  let i = fromZero ? 0 : 1
+
+  if (fromZero) {
+    for (; i < count; i++) {
+      array.push(i)
+    }
+  } else {
+    for (; i <= count; i++) {
+      array.push(i)
+    }
   }
   return array
 }
