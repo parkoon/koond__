@@ -1,9 +1,22 @@
 import React from 'react'
 import Carousel from './index'
+import styled from 'styled-components'
 export default {
   title: 'Data Display',
   component: Carousel,
 }
+
+const StyledItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 320px;
+  background: #364d79;
+  overflow: hidden;
+  color: #fff;
+`
 
 const items = [
   {
@@ -30,10 +43,10 @@ export const carousel = () => {
       <Carousel>
         {items.map(item => (
           <>
-            <div style={{ background: 'tomato', color: 'white' }}>
+            <StyledItem>
               <h2>{item.name}</h2>
-              <p>item.desctription</p>
-            </div>
+              <p>{item.description}</p>
+            </StyledItem>
           </>
         ))}
       </Carousel>
