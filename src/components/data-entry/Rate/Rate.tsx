@@ -19,7 +19,12 @@ const StyledRadio = styled.input.attrs({ type: 'radio', name: 'rating' })`
     color: ${palette.primary};
   }
 `
-const StyledLabel = styled.label`
+
+type StyledLabelProps = {
+  disabled: boolean
+  defaultValue: any
+}
+const StyledLabel = styled.label<StyledLabelProps>`
   color: #ddd;
   float: right;
   margin-right: 4px;

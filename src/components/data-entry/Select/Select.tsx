@@ -20,7 +20,10 @@ const SelectWrapper = styled.span`
   }
 `
 
-const StyledArrowWrapper = styled.span`
+type StyledArrowWrapper = {
+  checked: boolean
+}
+const StyledArrowWrapper = styled.span<StyledArrowWrapper>`
   position: absolute;
   right: 0;
   top: 0;
@@ -33,7 +36,10 @@ const StyledArrowWrapper = styled.span`
   transform: ${props => (props.checked ? 'translateY(-50%) rotate(270deg)' : 'translateY(-50%) rotate(90deg)')};
 `
 
-const StyledOptionWrapper = styled.div`
+type StyledOptionWrapper = {
+  checked: boolean
+}
+const StyledOptionWrapper = styled.div<StyledOptionWrapper>`
   position: absolute;
   user-select: none;
   top: 35px;

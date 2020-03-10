@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from './Table'
+import Table from './'
 
 export default {
   title: 'Data Display',

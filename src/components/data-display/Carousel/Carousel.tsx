@@ -53,21 +53,21 @@ function Carousel({ children }: CarouselProps) {
       <StyledIndicatorWrapper>
         <ul>
           <li>
-            <StyledIndicator id={1} />
-            <StyledIndicatorLabel htmlFor={1} />
+            <StyledIndicator id={'1'} />
+            <StyledIndicatorLabel htmlFor={'1'} />
           </li>
           <li>
-            <StyledIndicator id={2} />
-            <StyledIndicatorLabel htmlFor={2} />
+            <StyledIndicator id={'2'} />
+            <StyledIndicatorLabel htmlFor={'2'} />
           </li>
 
           <li>
-            <StyledIndicator id={3} />
-            <StyledIndicatorLabel htmlFor={3} />
+            <StyledIndicator id={'3'} />
+            <StyledIndicatorLabel htmlFor={'3'} />
           </li>
           <li>
-            <StyledIndicator id={4} />
-            <StyledIndicatorLabel htmlFor={4} />
+            <StyledIndicator id={'4'} />
+            <StyledIndicatorLabel htmlFor={'4'} />
           </li>
         </ul>
       </StyledIndicatorWrapper>

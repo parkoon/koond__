@@ -20,8 +20,10 @@ const StyledEmpty = styled.div`
   height: 320px;
   color: ${palette.grayscale[4]};
 `
-
-const StyledLoading = styled.div`
+type StyledLoadingProps = {
+  loading: boolean
+}
+const StyledLoading = styled.div<StyledLoadingProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +37,10 @@ const StyledLoading = styled.div`
   background: ${palette.white};
 `
 
-const StyledTableWrapper = styled.div`
+type StyledTableWrapperProps = {
+  yScroll: boolean
+}
+const StyledTableWrapper = styled.div<StyledTableWrapperProps>`
   position: relative;
   ${props =>
     props.yScroll &&
@@ -44,14 +49,22 @@ const StyledTableWrapper = styled.div`
       overflow-y: scroll;
     `}
 `
-const StyledTable = styled.table`
+
+type StyledTable = {
+  tableLayout?: 'fixed' | undefined
+}
+const StyledTable = styled.table<StyledTable>`
   border-collapse: collapse;
   width: 100%;
 
   table-layout: ${props => (props.tableLayout === 'fixed' ? 'fixed' : 'auto')};
 `
 
-const TableRow = styled.tr`
+type TableRowProps = {
+  yScroll: boolean
+  size: 'small' | 'middle' | 'default'
+}
+const TableRow = styled.tr<TableRowProps>`
   cursor: default;
   transition: background 0.3s;
 
@@ -99,20 +112,20 @@ type TableProps = {
   size?: 'small' | 'middle' | 'default'
 }
 
-function Table({ columns, loading, tableLayout, dataSource, ...props }: TableProps) {
-  const { yScroll } = props
-
+function Table({ columns, loading, tableLayout, dataSource, yScroll, size }: TableProps) {
   const columnKeys = Object.keys(columns)
   return (
     <StyledTableWrapper yScroll={yScroll}>
       <StyledTable tableLayout={tableLayout}>
         <thead>
-          <TableRow {...props}>{columns && columns.map(col => <th key={col.key}>{col.title}</th>)}</TableRow>
+          <TableRow yScroll={yScroll} size={size}>
+            {columns && columns.map(col => <th key={col.key}>{col.title}</th>)}
+          </TableRow>
         </thead>
         <tbody>
           {dataSource ? (
             dataSource.map((data, idx) => (
-              <TableRow key={idx} {...props}>
+              <TableRow yScroll={yScroll} size={size} key={idx}>
                 {columnKeys.map(key => (
                   <td key={key}>{data[columns[key].key]}</td>
                 ))}

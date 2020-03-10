@@ -10,9 +10,11 @@ export default {
   component: Drawer,
 }
 
+type placement = 'left' | 'right'
 export function drawer() {
   const [visible, setVisible] = useState(false)
-  const [placement, setPlacement] = useState('left')
+
+  const [placement, setPlacement] = useState<placement>('left')
 
   const showDrawer = () => {
     setVisible(prevState => !prevState)

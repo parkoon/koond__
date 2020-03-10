@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledCarouselItemWrapper = styled.div`
+type StyledCarouselItemWrapperProps = {
+  active: boolean
+}
+const StyledCarouselItemWrapper = styled.div<StyledCarouselItemWrapperProps>`
   display: ${props => (props.active ? 'inline-block' : 'none')};
 `
 

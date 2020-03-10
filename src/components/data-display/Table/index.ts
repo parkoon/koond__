@@ -1,1 +1,1 @@
-export { defalut } from './Table'
+export { default } from './Table'
