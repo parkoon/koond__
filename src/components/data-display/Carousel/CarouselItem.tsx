@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 type StyledCarouselItemWrapperProps = {
-  active: boolean
+  active?: boolean
   slideWidth: number
 }
 const StyledCarouselItemWrapper = styled.li<StyledCarouselItemWrapperProps>`
