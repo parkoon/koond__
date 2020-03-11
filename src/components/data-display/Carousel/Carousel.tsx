@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import styled from 'styled-components'
+import debounce from 'lodash/debounce'
+import throttle from 'lodash/throttle'
 
 import CarouselItem from './CarouselItem'
 import Indicator from './Indicator'
@@ -85,13 +87,12 @@ function Carousel({ children, effect }: CarouselProps) {
   const handleResize = () => {
     setSlideWidth(window.innerWidth)
   }
-
   useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('reisze', handleResize)
     }
-  }, [])
+  }, [handleResize])
 
   useEffect(() => {
     setFade(false)
