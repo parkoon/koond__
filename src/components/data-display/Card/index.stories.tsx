@@ -9,7 +9,7 @@ export default {
 export const card = () => {
   return (
     <>
-      <Card title="Card title">
+      <Card title="Card title" evaluation={2} outlined>
         <p>Card content</p>
         <p>Card content</p>
         <p>Card content</p>
@@ -19,7 +19,8 @@ export const card = () => {
       <Card
         title="Card title"
         size="small"
-        shadow
+        outlined
+        square
         style={{ width: '200px' }}
         cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
       >

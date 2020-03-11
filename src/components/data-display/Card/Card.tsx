@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import palette from '../../../themes/palette'
 import Typography from '../../general/Typography'
+import Paper from '../Paper'
 
 const CARD_PADDING_SIZE = {
   small: { header: '12px', body: '12px' },
@@ -82,12 +83,15 @@ type CardProps = {
   style?: React.CSSProperties
   title?: string
   size?: 'small' | 'default'
-  shadow?: boolean
   cover?: React.ReactNode
+  evaluation?: number
+  outlined?: boolean
+  square?: boolean
 }
-function Card({ children, title, size, cover, shadow, ...props }: CardProps) {
+function Card({ children, title, size, cover, evaluation, ...props }: CardProps) {
+  evaluation = Math.max(0, Math.min(evaluation, 24))
   return (
-    <StyledCardWrapper shadow={shadow} {...props}>
+    <Paper evaluation={evaluation} {...props}>
       {title && (
         <StyledCardHeader size={size}>
           <StyledCardTitle>{title}</StyledCardTitle>
@@ -97,13 +101,16 @@ function Card({ children, title, size, cover, shadow, ...props }: CardProps) {
       {cover && <StyledImageCover>{cover}</StyledImageCover>}
 
       <StyledCardBody size={size}>{children}</StyledCardBody>
-    </StyledCardWrapper>
+    </Paper>
   )
 }
 
 Card.defaultProps = {
   size: 'default',
   shadow: false,
+  evaluation: 0,
+  outlined: false,
+  square: false,
 }
 
 export default Card

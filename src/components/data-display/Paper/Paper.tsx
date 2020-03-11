@@ -59,7 +59,7 @@ function Paper({ children, evaluation, ...props }: PaperProps) {
    */
   evaluation = Math.max(0, Math.min(evaluation, 24))
 
-  console.log(props)
+  console.log(evaluation)
   return (
     <StyledPaper evaluation={evaluation} {...props}>
       {children}
