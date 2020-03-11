@@ -30,7 +30,7 @@ const StyledIndicatorLabel = styled.label`
   padding: 3px;
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.3);
-  transition: 0.2s;
+  transition: 0.3s;
   box-sizing: border-box;
   cursor: pointer;
   margin-right: 7px;

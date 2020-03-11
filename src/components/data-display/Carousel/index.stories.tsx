@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Carousel from './index'
 import styled from 'styled-components'
+import { Radio } from '../../data-entry/Radio'
 export default {
   title: 'Data Display',
   component: Carousel,
@@ -37,10 +38,24 @@ const items = [
   },
 ]
 
-export const carousel = () => {
+type Effect = 'slide' | 'fade'
+export const _Carousel = () => {
+  const [effect, setEffect] = useState<Effect>('slide')
+
+  const handleEffectChange = e => {
+    setEffect(e.target.value)
+  }
+
   return (
     <>
-      <Carousel>
+      <Radio name="carouselradio" value="slide" onChange={handleEffectChange} checked={effect === 'slide'}>
+        slide
+      </Radio>
+      <Radio name="carouselradio" value="fade" onChange={handleEffectChange} checked={effect === 'fade'}>
+        fade
+      </Radio>
+
+      <Carousel effect={effect}>
         {items.map(item => (
           <>
             <StyledItem>

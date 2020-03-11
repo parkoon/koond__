@@ -53,11 +53,11 @@ const StyledSlideTrack = styled.div`
 
 type CarouselProps = {
   children: React.ReactNode
+  effect?: 'slide' | 'fade'
 }
 
-let timer = null
-
-function Carousel({ children }: CarouselProps) {
+let _timer = null
+function Carousel({ children, effect }: CarouselProps) {
   const [active, setActive] = useState(0)
   const [fade, setFade] = useState(false)
   const [slideWidth, setSlideWidth] = useState(window.innerWidth)
@@ -67,13 +67,20 @@ function Carousel({ children }: CarouselProps) {
   const slideCount = React.Children.count(children)
   const totalSlideWidth = slideWidth * slideCount
 
-  const handleChange = useCallback((value: number) => {
-    setFade(true)
-    if (timer) clearTimeout(timer)
-    timer = setTimeout(() => {
-      setActive(value)
-    }, 400)
-  }, [])
+  const handleChange = useCallback(
+    (value: number) => {
+      setFade(true)
+
+      if (effect === 'fade') if (_timer) clearTimeout(_timer)
+      _timer = setTimeout(
+        () => {
+          setActive(value)
+        },
+        effect === 'fade' ? 400 : 1
+      )
+    },
+    [effect]
+  )
 
   const handleResize = () => {
     setSlideWidth(window.innerWidth)
@@ -92,30 +99,50 @@ function Carousel({ children }: CarouselProps) {
 
   return (
     <StyledCarouselWrapper>
-      <StyledFadeWrapper fade={fade}>
-        <CarouselItemWrapper active={active} ref={slideWrapperRef}>
-          {Array.isArray(children) ? (
-            children.map((child, index) => (
-              <CarouselItem active={active === index} key={index} child={child} slideWidth={slideWidth} />
-            ))
-          ) : (
-            <CarouselItem key={0} child={children} slideWidth={slideWidth} />
-          )}
-        </CarouselItemWrapper>
-      </StyledFadeWrapper>
+      {effect === 'slide' ? (
+        <StyledSlideTrack>
+          <CarouselItemWrapper
+            active={active}
+            ref={slideWrapperRef}
+            totalWidth={totalSlideWidth}
+            slideWidth={slideWidth}
+          >
+            {Array.isArray(children) ? (
+              children.map((child, index) => (
+                <CarouselItem key={index} child={child} slideWidth={slideWidth} effect={effect} />
+              ))
+            ) : (
+              <CarouselItem key={0} child={children} slideWidth={slideWidth} effect={effect} />
+            )}
+          </CarouselItemWrapper>
+        </StyledSlideTrack>
+      ) : (
+        <StyledFadeWrapper fade={fade}>
+          <CarouselItemWrapper active={active} ref={slideWrapperRef}>
+            {Array.isArray(children) ? (
+              children.map((child, index) => (
+                <CarouselItem
+                  active={active === index}
+                  key={index}
+                  child={child}
+                  slideWidth={slideWidth}
+                  effect={effect}
+                />
+              ))
+            ) : (
+              <CarouselItem key={0} child={children} slideWidth={slideWidth} effect={effect} />
+            )}
+          </CarouselItemWrapper>
+        </StyledFadeWrapper>
+      )}
 
-      {/* <StyledSlideTrack>
-        <CarouselItemWrapper active={active} ref={slideWrapperRef} totalWidth={totalSlideWidth} slideWidth={slideWidth}>
-          {Array.isArray(children) ? (
-            children.map((child, index) => <CarouselItem key={index} child={child} slideWidth={slideWidth} />)
-          ) : (
-            <CarouselItem key={0} child={children} slideWidth={slideWidth} />
-          )}
-        </CarouselItemWrapper>
-      </StyledSlideTrack> */}
       <Indicator onChange={handleChange} active={active} count={slideCount} />
     </StyledCarouselWrapper>
   )
+}
+
+Carousel.defaultProps = {
+  effect: 'slide',
 }
 
 export default Carousel
