@@ -50,7 +50,7 @@ export const SuffixIconWrapper = styled.span`
   color: ${palette.typography.grayscale[2]};
 `
 
-export const StyledInput = styled.input<InputProps>`
+export const Input = styled.input<InputProps>`
   padding: ${inputSize};
 
   ${inputPaddingLeft};
@@ -78,7 +78,7 @@ export const StyledInput = styled.input<InputProps>`
     color: ${palette.outline};
   }
 `
-export const StyledTextarea = styled.textarea`
+export const Textarea = styled.textarea`
   color: ${palette.typography.default};
   padding: 4px 11px;
   width: 100%;

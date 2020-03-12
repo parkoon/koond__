@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyledTextarea } from './styled/style'
+import * as Styled from './styled'
 
 type TextareaProps = {
   rows?: number
@@ -16,7 +16,7 @@ function Textarea({ rows, defaultValue, onChange, ...props }: TextareaProps) {
     onChange(e.target.value)
   }
 
-  return <StyledTextarea value={value} onChange={handleChange} rows={row} {...props} />
+  return <Styled.Textarea value={value} onChange={handleChange} rows={row} {...props} />
 }
 
 Textarea.defaultProps = {

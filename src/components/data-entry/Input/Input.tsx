@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
-import { InputWrapper, StyledInput, PrefixIconWrapper, SuffixIconWrapper } from './styled/style'
 
-// Types
-export type InputProps = {
-  placeholder?: string
-  htmlSize?: 'large' | 'defualt' | 'small'
-  prefixIcon?: React.ReactNode
-  suffixIcon?: React.ReactNode
-  onChange: (value: any) => void
-}
+import * as I from './interface'
+import * as Styled from './styled'
 
-function Input({ onChange, ...props }: InputProps) {
+function Input({ onChange, ...props }: I.InputProps) {
   const [value, setValue] = useState()
   const { prefixIcon, suffixIcon } = props
 
@@ -20,11 +13,11 @@ function Input({ onChange, ...props }: InputProps) {
   }
 
   return (
-    <InputWrapper>
-      {prefixIcon && <PrefixIconWrapper>{prefixIcon}</PrefixIconWrapper>}
-      {suffixIcon && <SuffixIconWrapper>{suffixIcon}</SuffixIconWrapper>}
-      <StyledInput value={value} onChange={handleChange} {...props} />
-    </InputWrapper>
+    <Styled.InputWrapper>
+      {prefixIcon && <Styled.PrefixIconWrapper>{prefixIcon}</Styled.PrefixIconWrapper>}
+      {suffixIcon && <Styled.SuffixIconWrapper>{suffixIcon}</Styled.SuffixIconWrapper>}
+      <Styled.Input value={value} onChange={handleChange} {...props} />
+    </Styled.InputWrapper>
   )
 }
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { InputProps } from './Input'
-import Icon from '../../general/Icon'
-import { SuffixIconWrapper, InputWrapper, StyledInput } from './styled/style'
 
-function Password({ onChange, ...props }: InputProps) {
+import * as Styled from './styled'
+import * as I from './interface'
+
+import Icon from '../../general/Icon'
+
+function Password({ onChange, ...props }: I.InputProps) {
   const [visible, setVisible] = useState(false)
   const [value, setValue] = useState()
 
@@ -17,8 +19,8 @@ function Password({ onChange, ...props }: InputProps) {
   }
 
   return (
-    <InputWrapper>
-      <StyledInput
+    <Styled.InputWrapper>
+      <Styled.Input
         suffixIcon={true}
         value={value}
         onChange={handleChange}
@@ -26,10 +28,10 @@ function Password({ onChange, ...props }: InputProps) {
         {...props}
       />
 
-      <SuffixIconWrapper onClick={handleClick}>
+      <Styled.SuffixIconWrapper onClick={handleClick}>
         <Icon name={visible ? 'visible' : 'invisible'} />
-      </SuffixIconWrapper>
-    </InputWrapper>
+      </Styled.SuffixIconWrapper>
+    </Styled.InputWrapper>
   )
 }
 
