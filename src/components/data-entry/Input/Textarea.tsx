@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
+
 import * as Styled from './styled'
+import * as I from './interface'
 
-type TextareaProps = {
-  rows?: number
-  defaultValue?: string
-  onChange: (value: string) => void
-}
-
-function Textarea({ rows, defaultValue, onChange, ...props }: TextareaProps) {
+function Textarea({ rows, defaultValue, onChange, helperText, ...props }: I.TextareaProps) {
   const [value, setValue] = useState(defaultValue)
   const row = Math.max(2, Math.min(rows, 6))
 
@@ -16,7 +12,12 @@ function Textarea({ rows, defaultValue, onChange, ...props }: TextareaProps) {
     onChange(e.target.value)
   }
 
-  return <Styled.Textarea value={value} onChange={handleChange} rows={row} {...props} />
+  return (
+    <>
+      <Styled.Textarea value={value} onChange={handleChange} rows={row} {...props} />
+      <Styled.HelperText>{helperText}</Styled.HelperText>
+    </>
+  )
 }
 
 Textarea.defaultProps = {

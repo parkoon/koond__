@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
+
+import * as I from '../interface'
+
 import palette from '../../../../themes/palette'
-import { InputProps } from '../Input'
 
 // Constants
 const INPUT_SIZE = {
@@ -11,18 +12,13 @@ const INPUT_SIZE = {
 }
 
 // Functions
-const inputSize = ({ htmlSize }: InputProps) => `${INPUT_SIZE[htmlSize]} 11px`
-const inputPaddingLeft = ({ suffixIcon, prefixIcon }: InputProps) => {
+const inputSize = ({ htmlSize }: I.InputProps) => `${INPUT_SIZE[htmlSize]} 11px`
+const inputPaddingLeft = ({ suffixIcon, prefixIcon }: I.InputProps) => {
   if (suffixIcon) {
-    console.log('suffix')
     return 'padding-right: 27px'
   } else if (prefixIcon) {
-    console.log('prefix')
-
     return 'padding-left: 27px'
   } else {
-    console.log('null')
-
     return null
   }
 }
@@ -50,7 +46,7 @@ export const SuffixIconWrapper = styled.span`
   color: ${palette.typography.grayscale[2]};
 `
 
-export const Input = styled.input<InputProps>`
+export const Input = styled.input<I.InputProps>`
   padding: ${inputSize};
 
   ${inputPaddingLeft};
@@ -59,26 +55,41 @@ export const Input = styled.input<InputProps>`
   box-sizing: border-box;
   font-size: 14px;
   line-height: 1.5;
-  border: 1px solid ${palette.outline};
+  border: 1px solid red;
   border-radius: 2px;
   outline: none;
 
   transition: 0.3s;
 
-  &:focus {
-    border-color: ${palette.primary};
-    box-shadow: 0 0 0 2px ${palette.shadow};
-  }
+  /**
+    error인 경우 hover focus 효과 x
+   */
+  ${props =>
+    props.error
+      ? css`
+          border: 1px solid ${palette.danger};
+          &:focus {
+            box-shadow: 0 0 0 2px rgba(182, 5, 12, 0.2);
+          }
+        `
+      : css`
+          border: 1px solid ${palette.outline};
 
-  &:hover {
-    border-color: ${palette.primary};
-  }
+          &:focus {
+            border-color: ${palette.primary};
+            box-shadow: 0 0 0 2px ${palette.shadow};
+          }
+
+          &:hover {
+            border-color: ${palette.primary};
+          }
+        `}
 
   &::placeholder {
     color: ${palette.outline};
   }
 `
-export const Textarea = styled.textarea`
+export const Textarea = styled.textarea<I.TextareaProps>`
   color: ${palette.typography.default};
   padding: 4px 11px;
   width: 100%;
@@ -94,12 +105,40 @@ export const Textarea = styled.textarea`
 
   transition: 0.3s;
 
-  &:focus {
-    border-color: ${palette.primary};
-    box-shadow: 0 0 0 2px ${palette.shadow};
-  }
+  /**
+    error인 경우 hover focus 효과 x
+   */
+  ${props =>
+    props.error
+      ? css`
+          border: 1px solid ${palette.danger};
+          &:focus {
+            box-shadow: 0 0 0 2px rgba(182, 5, 12, 0.2);
+          }
+        `
+      : css`
+          border: 1px solid ${palette.outline};
 
-  &:hover {
-    border-color: ${palette.primary};
+          &:focus {
+            border-color: ${palette.primary};
+            box-shadow: 0 0 0 2px ${palette.shadow};
+          }
+
+          &:hover {
+            border-color: ${palette.primary};
+          }
+        `}
+
+  &::placeholder {
+    color: ${palette.outline};
   }
+`
+
+export const HelperText = styled.span`
+  display: inline-block;
+  margin-top: 5px;
+  text-align: left;
+  font-weight: 400;
+  font-size: 13px;
+  color: ${palette.danger};
 `
