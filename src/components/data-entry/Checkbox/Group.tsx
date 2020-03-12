@@ -1,23 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react'
+
+import * as Styled from './styled'
+import * as I from './interface'
+
 import Checkbox from './Checkbox'
-import styled from 'styled-components'
 
-const CheckBoxWrapper = styled.span`
-  margin: 0 8px;
-`
-
-// Types
-type Option = {
-  label: string
-  value: string
-}
-
-type CheckBoxGroupProps = {
-  options: Option[]
-  defaultValue: string[]
-  onChange: (values: string[]) => void
-}
-function Group({ options, defaultValue, onChange }: CheckBoxGroupProps) {
+function Group({ options, defaultValue, title, onChange }: I.CheckBoxGroupProps) {
   const [values, setValues] = useState([...defaultValue])
 
   const handleChange = useCallback(
@@ -40,8 +28,9 @@ function Group({ options, defaultValue, onChange }: CheckBoxGroupProps) {
 
   return (
     <>
+      {title && <Styled.CheckBoxTitle>{title}</Styled.CheckBoxTitle>}
       {options.map(option => (
-        <CheckBoxWrapper>
+        <Styled.CheckBoxGroupWrapper>
           <Checkbox
             key={option.label}
             name={option.value}
@@ -50,7 +39,7 @@ function Group({ options, defaultValue, onChange }: CheckBoxGroupProps) {
           >
             {option.label}
           </Checkbox>
-        </CheckBoxWrapper>
+        </Styled.CheckBoxGroupWrapper>
       ))}
     </>
   )

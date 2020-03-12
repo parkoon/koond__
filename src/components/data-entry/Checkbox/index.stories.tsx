@@ -33,13 +33,18 @@ export const checkbox = () => {
   }
   return (
     <>
-      <Checkbox onChange={handleChange} name="agree">
+      <Checkbox onChange={handleChange} name="agree" title={<span style={{ color: '#16a085' }}>약관 동의</span>}>
         약관에 동의합니다.
       </Checkbox>
       <br />
       <br />
 
-      <Checkbox.Group options={options} defaultValue={['Pear']} onChange={handleGroupChange}></Checkbox.Group>
+      <Checkbox.Group
+        title={<span style={{ color: '#16a085' }}>과일 종류</span>}
+        options={options}
+        defaultValue={['Pear']}
+        onChange={handleGroupChange}
+      />
     </>
   )
 }
