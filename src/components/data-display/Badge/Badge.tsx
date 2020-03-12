@@ -6,24 +6,24 @@ const StyledBadgeWrapper = styled.span`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 20px;
-  height: 20px;
+  min-width: 22px;
+  height: 22px;
   background: ${palette.primary};
-  border-radius: 10px;
+  border-radius: 11px;
   color: #fff;
   font-size: 12px;
   padding: 0px 6px;
   box-sizing: border-box;
 `
 type BadgeType = {
-  count: number | string
+  text: number | string
   style?: React.CSSProperties
   overflowCount?: number
 }
-function Badge({ count, overflowCount, ...props }: BadgeType) {
-  if (count > overflowCount) count = `${overflowCount}+`
+function Badge({ text, overflowCount, ...props }: BadgeType) {
+  if ((text as number) > overflowCount) text = `${overflowCount}+`
 
-  return <StyledBadgeWrapper {...props}>{count}</StyledBadgeWrapper>
+  return <StyledBadgeWrapper {...props}>{text}</StyledBadgeWrapper>
 }
 
 export default Badge
