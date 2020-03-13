@@ -2,7 +2,7 @@ import React from 'react'
 import Copy from '.'
 
 export default {
-  title: '',
+  title: 'Copy',
 }
 
 export const copy = () => {

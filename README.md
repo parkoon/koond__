@@ -5,6 +5,7 @@ https://parkoon.github.io/koon-ui/
 - CheckBox children의 길이가 넘쳤을 때 UI 틀이짐.
 - any 를 사용하지 않고 props children에 접근할 수 있을까? (Currency.tsx line.16)
 - Textarea onChange warning
+- ~~Tooltip content 띄어쓰기 하면 line break 발생~~
 
 ## Have to Do
 
