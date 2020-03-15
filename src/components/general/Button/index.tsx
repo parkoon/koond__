@@ -23,9 +23,9 @@ type Props = {
 
 // Constants
 const BUTTON_PADDING_PER_SIZE = {
-  default: '5px 16px',
-  small: '0 7px',
-  large: '7px 18px',
+  default: '7px 16px',
+  small: '2px 7px',
+  large: '10px 18px',
 }
 const BUTTON_RADIUS = {
   circle: '50%',
