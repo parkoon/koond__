@@ -8,8 +8,8 @@ export const Dim = styled.div<I.DimProps>`
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: #000;
+  opacity: ${({ visible }) => (visible ? 0.6 : 0)};
   transition: 0.3s;
   z-index: -1;
 `
