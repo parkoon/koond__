@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import * as I from '../interface'
 import palette from '../../../../themes/palette'
+import { DrawerProps } from '../Drawer'
 
-const drawerPosition = ({ placement, visible, size }: I.DrawerProps): string =>
+const drawerPosition = ({ placement, visible, size }: DrawerProps): string =>
   `${placement}:${visible ? 0 : `-${size}px`}`
 
-export const Drawer = styled.div<I.DrawerProps>`
+export const Drawer = styled.div<DrawerProps>`
   position: fixed;
   top: 0;
   ${drawerPosition};

@@ -6,12 +6,12 @@ import Button from '../../general/Button'
 import { Radio } from '../../data-entry/Radio'
 
 export default {
-  title: 'Feedback',
+  title: 'Drawer',
   component: Drawer,
 }
 
 type placement = 'left' | 'right'
-export function drawer() {
+export function Default() {
   const [visible, setVisible] = useState(false)
 
   const [placement, setPlacement] = useState<placement>('left')
@@ -29,11 +29,12 @@ export function drawer() {
   }
   return (
     <>
-      <div>
-        <Radio name="pos" value="left" onChange={handleRadioChange} checked>
+      <div style={{ marginBottom: '24px' }}>
+        <Radio name="pos" value="left" onChange={handleRadioChange} checked={placement === 'left'}>
           left
         </Radio>
-        <Radio name="pos" value="right" onChange={handleRadioChange}>
+        <br />
+        <Radio name="pos" value="right" onChange={handleRadioChange} checked={placement === 'right'}>
           right
         </Radio>
       </div>
