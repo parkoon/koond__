@@ -2,10 +2,22 @@ import React from 'react'
 import { v1 as uuidv1 } from 'uuid'
 
 import * as Styled from './styled'
-import * as I from './interface'
 import Icon from '../../general/Icon'
 
-function Accordion({ items, multiple }: I.AccordionProps) {
+export type AccordionProps = {
+  /** 메뉴를 동시에 여러개 열 수 있는 Flag */
+  multiple?: boolean
+
+  /** 아코디언 메뉴에 사용 할 데이터 { title: string, description: string } */
+  items: AccordionData[]
+}
+
+export type AccordionData = {
+  title: string
+  description: string
+}
+
+function Accordion({ items, multiple }: AccordionProps) {
   let key = uuidv1()
 
   return (
