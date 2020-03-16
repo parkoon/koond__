@@ -2,19 +2,20 @@ import React from 'react'
 import { Radio } from './'
 
 export default {
-  title: 'Data Entry',
+  title: 'Radio',
   component: Radio,
 }
 
-export const radio = () => {
+export const Default = () => {
   const handleChange = e => {
     console.log(e.target.value)
   }
   return (
     <>
-      <Radio name="a" value={1} onChange={handleChange} checked>
+      <Radio name="a" value={1} onChange={handleChange}>
         A
       </Radio>
+      <br />
       <Radio name="a" value={2} onChange={handleChange}>
         B
       </Radio>

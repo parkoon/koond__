@@ -53,9 +53,16 @@ const StyledLabel = styled.label`
 `
 
 type RadioProps = {
+  /** Radio 텍스트 */
   children?: string
+
+  /** Radio 이름 */
   name?: string
+
+  /** Radio 값 */
   value: any
+
+  /** Checked 여부 */
   checked?: boolean
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
