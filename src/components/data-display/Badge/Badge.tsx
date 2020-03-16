@@ -18,6 +18,8 @@ const StyledBadgeWrapper = styled.span`
 type BadgeType = {
   text: number | string
   style?: React.CSSProperties
+
+  /** 최대로 표현 할 숫자 (그 이상은 + 로 표시) */
   overflowCount?: number
 }
 function Badge({ text, overflowCount, ...props }: BadgeType) {
