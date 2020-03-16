@@ -1,9 +1,10 @@
 import styled, { css } from 'styled-components'
-import * as I from '../interface'
 
 import palette from '../../../../themes/palette'
 
-export const ChipWrapper = styled.div<I.ChipProps & { clickable?: boolean; hasIcon?: boolean }>`
+import { ChipProps, ChipVariant } from '../Chip'
+
+export const ChipWrapper = styled.div<ChipProps & { clickable?: boolean; hasIcon?: boolean }>`
   position: relative;
   cursor: ${props => (props.clickable ? 'pointer' : 'default')};
   height: 32px;
@@ -68,7 +69,7 @@ export const ChipWrapper = styled.div<I.ChipProps & { clickable?: boolean; hasIc
     `}
 `
 
-export const IconWrapper = styled.div<{ variant: I.ChipVariant }>`
+export const IconWrapper = styled.div<{ variant: ChipVariant }>`
   position: absolute;
   width: 12px;
   height: 12px;

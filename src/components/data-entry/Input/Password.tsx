@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
 
 import Icon from '../../general/Icon'
+import { InputProps } from './Input'
 
-function Password({ onChange, helperText, ...props }: I.InputProps) {
+function Password({ onChange, helperText, ...props }: InputProps) {
   const [visible, setVisible] = useState(false)
   const [value, setValue] = useState('')
-
-  console.log('helperText', helperText)
 
   const handleClick = () => {
     setVisible(prevState => !prevState)

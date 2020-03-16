@@ -1,13 +1,23 @@
-https://parkoon.github.io/koon-ui/
+# 리액트 스토리북
 
-## Have to Fix
+자주 사용하는 컴포넌트 기반으로 스토리북 작성
 
-- CheckBox children의 길이가 넘쳤을 때 UI 틀이짐.
-- any 를 사용하지 않고 props children에 접근할 수 있을까? (Currency.tsx line.16)
-- Textarea onChange warning
-- ~~Tooltip content 띄어쓰기 하면 line break 발생~~
+## 설치 및 실행
 
-## Have to Do
+---
 
-- Carousel 마우스 드래그 기능
-- Caraousel 좌우 버튼
+```
+$ git clone https://github.com/parkoon/koon-ui
+$ npm i
+$ npm run storybook
+```
+
+## 배포
+
+---
+
+```
+$ npm run deploy-storybook
+```
+
+[Github page](https://parkoon.github.io/koon-ui/)

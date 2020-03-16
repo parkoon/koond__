@@ -52,6 +52,7 @@ type Props = {
    */
   htmlType?: 'submit' | 'button'
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  loading?: boolean
 }
 
 // Constants

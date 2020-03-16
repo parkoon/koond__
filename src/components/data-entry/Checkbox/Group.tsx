@@ -1,11 +1,10 @@
 import React, { useState, useCallback, useEffect } from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
 
-import Checkbox from './Checkbox'
+import Checkbox, { CheckBoxGroupProps } from './Checkbox'
 
-function Group({ options, defaultValue, title, onChange }: I.CheckBoxGroupProps) {
+function Group({ options, defaultValue, title, onChange }: CheckBoxGroupProps) {
   const [values, setValues] = useState([...defaultValue])
 
   const handleChange = useCallback(

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import * as I from '../interface'
+import { DimProps } from '../Dim'
 
-export const Dim = styled.div<I.DimProps>`
+export const Dim = styled.div<DimProps>`
   position: absolute;
   top: 0;
   left: 0;

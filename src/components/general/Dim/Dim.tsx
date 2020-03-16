@@ -2,7 +2,7 @@ import React from 'react'
 
 import * as Styled from './styled'
 
-type DimProps = {
+export type DimProps = {
   /**
    * Dim 영역 활성화 여부
    */

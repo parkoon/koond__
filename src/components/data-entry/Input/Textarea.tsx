@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
+import { TextareaProps } from './Input'
 
-function Textarea({ rows, defaultValue, onChange, helperText, ...props }: I.TextareaProps) {
+function Textarea({ rows, defaultValue, onChange, helperText, ...props }: TextareaProps) {
   const [value, setValue] = useState(defaultValue)
   const row = Math.max(2, Math.min(rows, 6))
 
