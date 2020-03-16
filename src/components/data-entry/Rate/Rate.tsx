@@ -56,8 +56,13 @@ const StyledLabel = styled.label<StyledLabelProps>`
 `
 
 type StarProps = {
+  /** 별 개수 */
   count?: number
+
+  /** readonly 여부 */
   disabled?: boolean
+
+  /** 최초 마운트 시 보여줄 별의 개수 */
   defaultValue?: number
   onChange?: (value: string) => void
 }
