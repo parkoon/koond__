@@ -7,17 +7,50 @@ import colorControler from '../../../helpers/colorControler'
 type Props = {
   children?: React.ReactNode
 
-  /** 보여주고 싶은 이름 */
+  /**
+   * 버튼의 종류 'primary' | 'dashed' | 'link' | 'default'
+   */
   variant?: 'primary' | 'dashed' | 'link' | 'default'
+
+  /**
+   * 버튼의 크기 'large' | 'small' | 'default'
+   */
   size?: 'large' | 'small' | 'default'
+
+  /**
+   *  버튼이 부모 영역을 모두 차지 할 것 인지 여부
+   */
   block?: boolean
+
+  /**
+   * 비활성화 여부
+   */
   disabled?: boolean
-  loading?: boolean
+
+  /**
+   * 버튼 모양 'round' | 'circle' | 'default'
+   */
   shape?: 'round' | 'circle' | 'default'
+
+  /**
+   * 버튼에 사용 할 Icon
+   */
   icon?: React.ReactNode
+
+  /**
+   * 링크
+   */
   href?: string
+
+  /**
+   * Icon만 있는 버튼을 사용할지 여부
+   */
   onlyIcon?: boolean
-  htmlType?: 'submit' | 'button' | 'reset'
+
+  /**
+   * 버튼 타입 'submit' | 'button'
+   */
+  htmlType?: 'submit' | 'button'
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }
 
@@ -124,10 +157,6 @@ const Space = styled.span`
   margin: 0 3px;
 `
 
-/**
- *
- * @param param0 sss
- */
 function Button({ children, htmlType, ...props }: Props) {
   const { loading, disabled, icon, href, variant } = props
 
@@ -174,8 +203,10 @@ Button.defaultProps = {
   size: 'default',
   block: false,
   disabled: false,
-  loading: false,
   htmlType: 'button',
+  shape: 'default',
+  onlyIcon: false,
+  loading: false,
 }
 
 export default Button

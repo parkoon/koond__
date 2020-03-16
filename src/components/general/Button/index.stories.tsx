@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { withKnobs, boolean, text, number, select } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
@@ -7,91 +5,102 @@ import Button from '../Button'
 import Icon from '../Icon'
 
 export default {
-  title: 'General',
+  title: 'Button',
   component: Button,
   decorators: [withKnobs],
   parameters: {
-    componentSubtitle: '안녕하세요 라고 보여주는 컴포넌트',
+    componentSubtitle: '버튼이 필요할 때 사용하는 컴포넌트',
   },
 }
+export const Default = () => {
+  return (
+    <>
+      <Button>Default</Button>
+    </>
+  )
+}
 
-const groupId = 'button-otps'
-
-export const button = () => {
-  // const big = boolean("big", false);
-  // const name = text("name", "storybook");
-
-  const label = 'variant'
-  const options = ['default', 'contained', 'outlined']
-  const defaultValue = 'default'
-  const value = select(label, options, defaultValue, groupId)
-  const rounded = boolean('rounded', false, groupId)
-  const size = select('size', ['large', 'default', 'compressed', 'small'], 'default', groupId)
-
-  const color = select('color', ['default', 'primary', 'secondary', 'success', 'failure'], 'default', groupId)
-
-  const startIcon = text('startIcon', '')
-  const endIcon = text('endIcon', '')
+export const Variant = () => {
   return (
     <>
       <Button variant="primary">Primary</Button>
-      <Button>Default</Button>
+      <br />
+      <br />
       <Button variant="link" href="https://naver.com">
         Link
       </Button>
+      <br />
+      <br />
       <Button variant="dashed">Dashed</Button>
+    </>
+  )
+}
 
-      <br />
-      <br />
-
-      <Button variant="primary" size="large">
-        Large
-      </Button>
+export const Size = () => {
+  return (
+    <>
       <Button variant="primary" size="small">
         Small
       </Button>
+      <br />
+      <br />
       <Button variant="primary">Default</Button>
-
       <br />
       <br />
-
-      <Button variant="primary" block>
-        Primary
+      <Button variant="primary" size="large">
+        Large
       </Button>
+    </>
+  )
+}
 
+export const Block = () => {
+  return (
+    <Button variant="primary" block>
+      Primary
+    </Button>
+  )
+}
+
+export const Shape = () => {
+  return (
+    <>
+      <Button variant="primary">D</Button>
       <br />
       <br />
-
       <Button variant="primary" shape="circle">
-        Primary(circle)
+        C
       </Button>
+      <br />
+      <br />
       <Button variant="primary" shape="round">
-        Primary(round)
+        R
       </Button>
-      <Button variant="primary">Primary</Button>
-      <br />
-      <br />
+    </>
+  )
+}
 
+export const Disabled = () => {
+  return (
+    <>
       <Button variant="primary" disabled>
         Primary(disabled)
       </Button>
+      <br />
+      <br />
       <Button variant="dashed" disabled>
         Dashed(disabled)
       </Button>
+      <br />
+      <br />
       <Button disabled>Default(disabled)</Button>
-      <br />
-      <br />
+    </>
+  )
+}
 
-      <Button variant="primary" loading>
-        Primary
-      </Button>
-      <Button loading size="large">
-        Default
-      </Button>
-
-      <br />
-      <br />
-
+export const _Icon = () => {
+  return (
+    <>
       <Button variant="primary" icon={<Icon name="search" />}>
         Primary
       </Button>
@@ -100,15 +109,19 @@ export const button = () => {
       <Button variant="dashed" icon={<Icon name="search" />}>
         Search
       </Button>
-
-      <br />
-      <br />
-
-      <Button htmlType="submit">Submit</Button>
     </>
   )
 }
 
-button.story = {
-  name: 'Button',
+export const Submit = () => {
+  const handleSumbit = () => {
+    alert('submitted!')
+  }
+  return (
+    <>
+      <Button htmlType="submit" onClick={handleSumbit}>
+        Submit
+      </Button>
+    </>
+  )
 }
