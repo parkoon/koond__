@@ -33,7 +33,7 @@ const StyledLoading = styled.div<StyledLoadingProps>`
   right: 0;
   bottom: 0;
   transition: 0.3s;
-  opacity: ${props => (props.loading ? 0.4 : 0)};
+  opacity: ${props => (props.loading ? 0.8 : 0)};
   background: ${palette.white};
 `
 
@@ -104,11 +104,22 @@ type columProps = {
 }
 
 type TableProps = {
+  /** 로딩 여부 */
   loading?: boolean
+
+  /** 스크롤 여부 */
   yScroll?: boolean
+
+  /** Table 타이틀 { key: string | number, title: string } */
   columns: columProps[]
+
+  /** Table 데이터 */
   dataSource?: object[] | undefined
+
+  /** Table layout */
   tableLayout?: 'fixed' | undefined
+
+  /** Table size 'small' | 'middle' | 'default' */
   size?: 'small' | 'middle' | 'default'
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import Table from './'
 
 export default {
-  title: 'Data Display',
+  title: 'Table',
   component: Table,
 }
 
@@ -24,18 +24,6 @@ const columns = [
     title: 'Description',
     key: 'description',
   },
-  // {
-  //   title: 'Action',
-  //   key: 'action',
-  //   // render: () => (
-  //   //   <span>
-  //   //     <a style={{ marginRight: 16 }}>Delete</a>
-  //   //     <a className="ant-dropdown-link">
-  //   //       More actions <DownOutlined />
-  //   //     </a>
-  //   //   </span>
-  //   // ),
-  // },
 ]
 
 const data = []
@@ -49,13 +37,34 @@ for (let i = 1; i <= 10; i++) {
   })
 }
 
-export const table = () => {
+export const Default = () => {
+  return (
+    <>
+      <Table columns={columns} dataSource={data} />
+    </>
+  )
+}
+export const NoData = () => {
   return (
     <>
       <Table columns={columns} dataSource={null} />
-      <Table columns={columns} dataSource={data} yScroll tableLayout="fixed" />
-      <Table columns={columns} dataSource={data} size="small" loading />
       {/* <Table yScroll /> */}
+    </>
+  )
+}
+
+export const Scroll = () => {
+  return (
+    <>
+      <Table columns={columns} dataSource={data} yScroll tableLayout="fixed" />
+    </>
+  )
+}
+
+export const Loading = () => {
+  return (
+    <>
+      <Table columns={columns} dataSource={data} size="small" loading />
     </>
   )
 }
