@@ -4,7 +4,7 @@ type commonProps = {
   error?: boolean
   helperText?: string
 
-  onChange: (value: string) => void
+  onChange?: (value: any) => void
 }
 export type InputProps = commonProps & {
   htmlSize?: 'large' | 'defualt' | 'small'
