@@ -2,7 +2,7 @@ import React from 'react'
 import Select from './Select'
 
 export default {
-  title: 'Data Entry',
+  title: 'Select',
   component: Select,
 }
 
@@ -21,7 +21,7 @@ const options = [
   },
 ]
 
-export const select = () => {
+export const Default = () => {
   const handleChange = value => {
     console.log('value...', value)
   }

@@ -94,8 +94,13 @@ type option = {
   value: string
 }
 type SelectProps = {
+  /** select 에 보여줄 값들  { name: string, value: string} */
   options: option[]
+
+  /** 값이 변결 될 때마하 발생하는 이벤트 */
   onChange: (value: string) => void
+
+  /** defualt value */
   defaultValue?: string
 }
 
