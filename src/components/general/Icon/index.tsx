@@ -3,10 +3,24 @@ import styled, { keyframes } from 'styled-components'
 
 // Types
 type Props = {
+  /**
+   * 사용 할 아이콘 이름
+   */
   name: string
-  dangerouslySetInnerHTML?: any
+
+  /**
+   * 아이콘 스타일
+   */
   style?: React.CSSProperties
+
+  /**
+   * 돌아가게 만들 수 있음
+   */
   spin?: boolean
+
+  /**
+   * 아이콘 사이즈 (width, height px)
+   */
   size?: number
 }
 
