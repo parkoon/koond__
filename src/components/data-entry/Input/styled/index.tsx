@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import palette from '../../../../themes/palette'
-import { InputProps } from '../Input'
+import { InputProps, TextareaProps } from '../Input'
 
 // Constants
 const INPUT_SIZE = {
