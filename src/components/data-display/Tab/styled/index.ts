@@ -36,6 +36,7 @@ const headerSize = ({ placement }: I.TabsProps) => {
   switch (placement) {
     case 'left':
       return `
+        max-width: 200px;
         width: 22%;
         height: 100%;
 
@@ -52,7 +53,7 @@ const bodyWidthAndPosition = ({ placement }: I.TabsProps) => {
   switch (placement) {
     case 'left':
       return `
-        width: 78%;
+        min-width: 78%;
         float: left;
       `
 
