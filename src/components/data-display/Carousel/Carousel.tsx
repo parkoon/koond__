@@ -55,6 +55,8 @@ const StyledSlideTrack = styled.div`
 
 type CarouselProps = {
   children: React.ReactNode
+
+  /** 효과 */
   effect?: 'slide' | 'fade'
 }
 
