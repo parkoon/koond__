@@ -2,24 +2,28 @@ import React from 'react'
 import Currency from './Currency'
 
 export default {
-  title: 'Data Display',
+  title: 'Currency',
   component: Currency,
 }
 
-export const currency = () => {
+export const Default = () => {
   return (
     <>
-      <Currency won={121212121212} suffix="원" />
-      <br />
-      <br />
-      <Currency
-        won={<span style={{ fontSize: '20px', fontWeight: 'bold' }}>121212121212</span>}
-        prefix="월"
-        suffix="원"
-      />
-      <br />
-      <br />
-      <Currency won={121212121212} suffix="원" negative />
+      <Currency won={1923000} suffix="원" />
+    </>
+  )
+}
+export const CustomizedWon = () => {
+  return (
+    <>
+      <Currency won={<span style={{ fontSize: '20px', fontWeight: 'bold' }}>1923000</span>} prefix="월" suffix="원" />
+    </>
+  )
+}
+export const Negative = () => {
+  return (
+    <>
+      <Currency won={1923000} suffix="원" negative />
     </>
   )
 }

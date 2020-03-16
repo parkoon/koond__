@@ -1,11 +1,24 @@
 import React from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
 
 import numberWithCommas from '../../../helpers/numberWithCommas'
 
-function Currency({ won, prefix, suffix, negative }: I.CurrencyProps) {
+export type CurrencyProps = {
+  /** 표현 할 값 */
+  won: number | string | React.ReactNode
+
+  /** 앞에 붙일 단어 */
+  prefix?: string
+
+  /** 뒤에 붙일 단어 */
+  suffix?: string
+
+  /** 음수로 표현 할 것인가 */
+  negative?: boolean
+}
+
+function Currency({ won, prefix, suffix, negative }: CurrencyProps) {
   const isReactNode = typeof won === 'object' && (won as Object).hasOwnProperty('$$typeof')
 
   let price = won
