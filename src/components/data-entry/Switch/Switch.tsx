@@ -59,8 +59,12 @@ const Slider = styled.span<StyleProps>`
 `
 
 type SwitchProps = {
+  /** 체크 된 상태로 마운트 할 지 여부 */
   defaultChecked?: boolean
+
+  /** 스위치 사이즈 'default' | 'small'*/
   size?: 'default' | 'small'
+
   onChange: (checked: boolean) => void
 }
 
