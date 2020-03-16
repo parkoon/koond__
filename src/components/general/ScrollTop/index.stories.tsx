@@ -3,71 +3,52 @@ import ScrollTop from '.'
 import styled from 'styled-components'
 
 export default {
-  title: 'General',
+  title: 'ScrollTop',
   component: ScrollTop,
+  parameters: {
+    componentSubtitle: '페이지를 맨 위로 올리는 버튼이 필요할 때 사용하는 컴포넌트',
+  },
 }
 
 const Container = styled.div`
   position: relative;
-  /* width: 620px; */
-  /* height: 300px; */
   overflow: auto;
   border: 1px solid #ebebeb;
   padding: 24px;
 `
-const StyledLorem = styled.p`
-  margin-bottom: 120px;
+const RedBox = styled.div`
+  width: 100%;
+  height: 200px;
+  background: #e74c3c;
+`
+const BlueBox = styled.div`
+  width: 100%;
+  height: 200px;
+  background: #3498db;
+`
+const PurpleBox = styled.div`
+  width: 100%;
+  height: 200px;
+  background: #8e44ad;
+`
+const OrangeBox = styled.div`
+  width: 100%;
+  height: 200px;
+  background: #f39c12;
 `
 
-export const scrolltop = () => {
+export const Default = () => {
   return (
     <Container>
       <ScrollTop />
-      <h1>Scroll Top</h1>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
-      <StyledLorem>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a te dicta? Refert tamen, quo modo.
-      </StyledLorem>
+      <OrangeBox />
+      <RedBox />
+      <BlueBox />
+      <PurpleBox />
+      <OrangeBox />
+      <RedBox />
+      <BlueBox />
+      <PurpleBox />
     </Container>
   )
 }

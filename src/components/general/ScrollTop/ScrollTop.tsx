@@ -16,12 +16,15 @@ const StyledScrollTop = styled.div<StyledScrollTopProps>`
   cursor: pointer;
 `
 
-type ScrollTopType = {
+export type ScrollTopProps = {
+  /**
+   * 맨 위로 보내는 버튼이 생기는 지점
+   */
   visibilityHeight?: number
   children?: React.ReactNode
 }
 
-function ScrollTop({ visibilityHeight, children }: ScrollTopType) {
+function ScrollTop({ visibilityHeight, children }: ScrollTopProps) {
   const [visible, setVisible] = useState(false)
 
   const handleClick = useCallback(() => {
