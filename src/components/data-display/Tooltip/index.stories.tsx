@@ -4,18 +4,19 @@ import Button from '../../general/Button'
 import styled from 'styled-components'
 
 export default {
-  title: 'Data Display',
+  title: 'Tooltip',
+  component: Tooltip,
 }
 
 const Container = styled.div`
-  width: 720px;
-  height: 500px;
+  width: 570px;
+  height: 200px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 `
 
-export const tooltip = () => {
+export const Default = () => {
   return (
     <Container>
       <Tooltip title="Wait" placement="top">

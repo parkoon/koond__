@@ -1,9 +1,21 @@
 import React from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
 
-function Tooltip({ children, placement, title }: I.TooltipProps) {
+export type TooltipPlacement = 'top' | 'left' | 'bottom' | 'right'
+
+export type TooltipProps = {
+  /** Tooltip에 사용될 컴포넌트 */
+  children: React.ReactNode
+
+  /** Tooltip에 표시 할 타이틀명 */
+  title: string
+
+  /** Tooltip의위치 'top' | 'left' | 'bottom' | 'right'*/
+  placement: TooltipPlacement
+}
+
+function Tooltip({ children, placement, title }: TooltipProps) {
   return (
     <Styled.TooltipWrapper className={placement} title={title}>
       {children}
@@ -12,7 +24,6 @@ function Tooltip({ children, placement, title }: I.TooltipProps) {
 }
 
 Tooltip.defaultProps = {
-  title: 'need title prop',
   placement: 'bottom',
 }
 
