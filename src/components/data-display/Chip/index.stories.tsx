@@ -3,21 +3,41 @@ import Chip from '.'
 import Icon from '../../general/Icon'
 
 export default {
-  title: 'Data Display',
+  title: 'Chip',
+  component: Chip,
 }
 
-export const chip = () => {
-  const hanleDelete = () => {}
+export const Default = () => {
   return (
     <>
       <Chip title="Basic" />
+    </>
+  )
+}
+
+export const Fill = () => {
+  return (
+    <>
       <Chip title="Basic" variant="fill" color="#16a085" />
-      <Chip title="Basic" variant="fill" color="red" onDelete={hanleDelete} />
-      <Chip title="Disabled" disabled />
-      <Chip title="Deletable" onDelete={hanleDelete} />
-      <Chip title="Deletablezzzzzaskdjfaldjlkaj" onDelete={hanleDelete} deleteIcon={<Icon name="search" size={10} />} />
-      <Chip title="Basic" variant="fill" deleteIcon={<Icon name="arrow-right" size={10} />} />
-      <Chip title="Deletable" onDelete={hanleDelete} />
+    </>
+  )
+}
+
+export const Delete = () => {
+  const handleDelete = () => {
+    alert('deleted')
+    // Do something...
+  }
+  return (
+    <>
+      <Chip title="Basic" variant="fill" color="red" onDelete={handleDelete} />
+    </>
+  )
+}
+export const WithIcon = () => {
+  return (
+    <>
+      <Chip title="Icon" deleteIcon={<Icon name="search" size={10} />} />
     </>
   )
 }

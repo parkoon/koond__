@@ -1,11 +1,34 @@
 import React from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
 
 import Icon from '../../general/Icon'
 
-function Chip({ onDelete, onClick, deleteIcon, ...props }: I.ChipProps) {
+export type ChipVariant = 'outlined' | 'fill'
+
+export type ChipProps = {
+  /** Chip 컴포넌트에 쓰일 단어 */
+  title: string
+
+  /** 비활성화 여부 */
+  disabled?: boolean
+  onClick?: () => void
+  onDelete?: () => void
+
+  /** 덮어 쓸 스타일 */
+  style?: React.CSSProperties
+
+  /** Chip 종류 'outlined' | 'fill'*/
+  variant?: ChipVariant
+
+  /** Delete icon */
+  deleteIcon?: React.ReactNode
+
+  /** 색상 */
+  color?: string
+}
+
+function Chip({ onDelete, onClick, deleteIcon, ...props }: ChipProps) {
   const { title, variant } = props
 
   /**
@@ -30,7 +53,8 @@ function Chip({ onDelete, onClick, deleteIcon, ...props }: I.ChipProps) {
 }
 
 Chip.defaultProps = {
-  variant: 'default',
+  variant: 'outlined',
+  disabled: false,
 }
 
 export default Chip
