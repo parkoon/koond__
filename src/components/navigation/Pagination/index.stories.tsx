@@ -4,21 +4,32 @@ import { action } from '@storybook/addon-actions'
 import Pagination from '.'
 
 export default {
-  title: 'Navigation',
-  component: Pagination,
+  title: 'Pagination',
   decorators: [withKnobs],
+  component: Pagination,
   parameters: {
-    componentSubtitle: '안녕하세요 라고 보여주는 컴포넌트',
+    componentSubtitle: '페이지를 처리하는 컴포넌트',
   },
 }
 
-export const pagination = () => {
-  const onChange = (page: number) => {}
+export const Default = () => {
+  const onChange = (page: number) => {
+    // Do something...
+  }
   return (
     <>
       <Pagination total={500} limit={10} neighbours={1} onChange={onChange} />
-      <br />
-      <Pagination total={500} limit={10} neighbours={1} outline onChange={onChange} />
+    </>
+  )
+}
+
+export const Outlined = () => {
+  const onChange = (page: number) => {
+    // Do something...
+  }
+  return (
+    <>
+      <Pagination total={500} limit={10} neighbours={1} outlined onChange={onChange} />
     </>
   )
 }

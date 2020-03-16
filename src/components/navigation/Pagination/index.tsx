@@ -8,17 +8,28 @@ const RIGHT_PAGE = 'RIGHT'
 
 // Types
 type Props = {
+  /** 총 페이지 개수 */
   total: number
-  limit: number
-  neighbours: number
+
+  /** 페이지 당 보여줄 리스트 개수 */
+  limit?: number
+
+  /** 다음 페이지 이동 시 좌우에 보여줄 페이지 개수 (1~2) */
+  neighbours?: number
+
+  /** 페이지 이동 시 발생하는 이벤트 */
   onChange?: (page: number) => void
+
+  /** 디폴트 페이지 */
   defaultCurrent?: number
-  outline: boolean
+
+  /** 페이지 테두리 여부 */
+  outlined?: boolean
 }
 
 type PaginationLinkProps = {
   current?: boolean
-  outline?: boolean
+  outlined?: boolean
 }
 
 // Functions
@@ -39,13 +50,13 @@ const range = (from: number, to: number, step: number = 1) => {
 }
 
 const pageButtonColor = ({ current }: PaginationLinkProps) => (current ? palette.primary : palette.typography.default)
-const pageButtonBorder = ({ current, outline }: PaginationLinkProps) => {
+const pageButtonBorder = ({ current, outlined }: PaginationLinkProps) => {
   if (current) {
     return `1px solid ${palette.button.primary}`
   }
 
-  if (outline) {
-    return `1px solid ${palette.button.outline}`
+  if (outlined) {
+    return `1px solid ${palette.button.outlined}`
   }
 
   return 'none'
@@ -68,7 +79,15 @@ const PaginationLink = styled.a<PaginationLinkProps>`
   cursor: pointer;
 `
 
-function Pagination({ limit, total, onChange, neighbours, outline, defaultCurrent, ...props }: Props) {
+/**
+ * 페이지를 처리하고 싶을 땐 `Pagination` 컴포넌트를 사용하세요.
+ *
+ * - `defaultCurrent` 값을 설정하여 **최초 페이지**를 설정 할 수 있습니다.
+ * - `outlined` 값을  `true`로 설정하여 페이지의 **테두리** 를 설정할 수 있습니다.
+ * - `limit` 값으로 페이지에 보여줄 리스트스의 개수를 설정할 수 있습니다.
+ * - `neighbours`를 2로 설정하면 페이지 이동 시 화살표 사이에 2개의 페이지 번호가 출력됩니다.
+ */
+function Pagination({ limit, total, onChange, neighbours, outlined, defaultCurrent, ...props }: Props) {
   const [currentPage, setCurrentPage] = useState(defaultCurrent)
 
   useEffect(() => {
@@ -180,19 +199,19 @@ function Pagination({ limit, total, onChange, neighbours, outline, defaultCurren
         {pages.map((page, index) => {
           if (page === LEFT_PAGE)
             return (
-              <PaginationLink outline={outline} onClick={handleMoveLeft}>
+              <PaginationLink outlined={outlined} onClick={handleMoveLeft}>
                 &laquo;
               </PaginationLink>
             )
           if (page === RIGHT_PAGE)
             return (
-              <PaginationLink outline={outline} onClick={handleMoveRight}>
+              <PaginationLink outlined={outlined} onClick={handleMoveRight}>
                 &raquo;
               </PaginationLink>
             )
 
           return (
-            <PaginationLink onClick={handleClick(page)} outline={outline} current={currentPage === page}>
+            <PaginationLink onClick={handleClick(page)} outlined={outlined} current={currentPage === page}>
               {page}
             </PaginationLink>
           )
@@ -204,7 +223,9 @@ function Pagination({ limit, total, onChange, neighbours, outline, defaultCurren
 
 Pagination.defaultProps = {
   defaultCurrent: 1,
-  outline: false,
+  outlined: false,
+  neighbours: 2,
+  limit: 10,
 }
 
 export default Pagination
