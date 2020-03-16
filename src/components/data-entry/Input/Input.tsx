@@ -1,11 +1,28 @@
 import React, { useState } from 'react'
 
-import * as I from './interface'
 import * as Styled from './styled'
 import Textarea from './Textarea'
 import Password from './Password'
 
-function Input({ onChange, helperText, ...props }: I.InputProps) {
+type commonProps = {
+  placeholder?: string
+  defaultValue?: string
+  error?: boolean
+  helperText?: string
+
+  onChange?: (value: any) => void
+}
+export type InputProps = commonProps & {
+  htmlSize?: 'large' | 'defualt' | 'small'
+  prefixIcon?: React.ReactNode
+  suffixIcon?: React.ReactNode
+}
+
+export type TextareaProps = commonProps & {
+  rows?: number
+}
+
+function Input({ onChange, helperText, ...props }: InputProps) {
   const [value, setValue] = useState()
   const { prefixIcon, suffixIcon } = props
 

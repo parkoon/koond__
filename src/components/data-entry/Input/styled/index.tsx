@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
 
-import * as I from '../interface'
-
 import palette from '../../../../themes/palette'
+import { InputProps } from '../Input'
 
 // Constants
 const INPUT_SIZE = {
@@ -12,8 +11,8 @@ const INPUT_SIZE = {
 }
 
 // Functions
-const inputSize = ({ htmlSize }: I.InputProps) => `${INPUT_SIZE[htmlSize]} 11px`
-const inputPaddingLeft = ({ suffixIcon, prefixIcon }: I.InputProps) => {
+const inputSize = ({ htmlSize }: InputProps) => `${INPUT_SIZE[htmlSize]} 11px`
+const inputPaddingLeft = ({ suffixIcon, prefixIcon }: InputProps) => {
   if (suffixIcon) {
     return 'padding-right: 27px'
   } else if (prefixIcon) {
@@ -46,7 +45,7 @@ export const SuffixIconWrapper = styled.span`
   color: ${palette.typography.grayscale[2]};
 `
 
-export const Input = styled.input<I.InputProps>`
+export const Input = styled.input<InputProps>`
   padding: ${inputSize};
 
   ${inputPaddingLeft};
@@ -89,7 +88,7 @@ export const Input = styled.input<I.InputProps>`
     color: ${palette.outline};
   }
 `
-export const Textarea = styled.textarea<I.TextareaProps>`
+export const Textarea = styled.textarea<TextareaProps>`
   color: ${palette.typography.default};
   padding: 4px 11px;
   width: 100%;

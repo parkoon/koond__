@@ -5,11 +5,11 @@ import Icon from '../../general/Icon'
 const { Textarea, Password } = Input
 
 export default {
-  title: 'Data Entry',
+  title: 'Input',
   component: Input,
 }
 
-export const input = () => {
+export const Default = () => {
   return (
     <>
       <h4>Error</h4>
