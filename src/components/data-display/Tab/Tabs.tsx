@@ -1,9 +1,26 @@
 import React, { useState, useCallback } from 'react'
 
 import * as Styled from './styled'
-import * as I from './interface'
 
-function Tabs({ children, ...props }: I.TabsProps) {
+export type TabPlacement = 'top' | 'left'
+
+export type TabsType = 'default' | 'card'
+export type TabsProps = {
+  /** Tab Menu 위치 */
+  placement?: TabPlacement
+
+  children?: React.ReactNode
+
+  /**Tab Menu 타입 */
+  type?: TabsType
+}
+
+export type TabPanelProps = {
+  title: string
+  children: React.ReactNode
+}
+
+function Tabs({ children, ...props }: TabsProps) {
   const [selectedTab, setSelectedTab] = useState(0)
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +51,7 @@ function Tabs({ children, ...props }: I.TabsProps) {
   )
 }
 
-function TabPanel({ children }: I.TabPanelProps) {
+function TabPanel({ children }: TabPanelProps) {
   return <>{children}</>
 }
 

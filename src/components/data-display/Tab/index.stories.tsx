@@ -4,9 +4,11 @@ import Tabs from '.'
 const { TabPanel } = Tabs
 
 export default {
-  title: 'Data Display',
+  title: 'Tabs',
+  component: Tabs,
 }
-export const tabs = () => {
+
+export const Default = () => {
   return (
     <>
       <Tabs>
@@ -29,6 +31,12 @@ export const tabs = () => {
           </p>
         </TabPanel>
       </Tabs>
+    </>
+  )
+}
+export const CardType = () => {
+  return (
+    <>
       <Tabs type="card">
         <TabPanel title="Lorem 1" key="tab-1">
           <p>
@@ -49,7 +57,13 @@ export const tabs = () => {
           </p>
         </TabPanel>
       </Tabs>
+    </>
+  )
+}
 
+export const Placement = () => {
+  return (
+    <>
       <Tabs type="card" placement="left">
         <TabPanel title="Lorem 1" key="tab-1">
           <p>

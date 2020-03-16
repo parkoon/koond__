@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
 
-import * as I from '../interface'
-
 import palette from '../../../../themes/palette'
+import { TabsProps } from '../Tabs'
 
 const arrowDown = `
 width: 0;
@@ -19,7 +18,7 @@ border-bottom: 5px solid transparent;
 border-left: 8px solid ${palette.primary};
 `
 
-const headerPosition = ({ placement }: I.TabsProps) => {
+const headerPosition = ({ placement }: TabsProps) => {
   switch (placement) {
     case 'left':
       return `
@@ -32,7 +31,7 @@ const headerPosition = ({ placement }: I.TabsProps) => {
       return ``
   }
 }
-const headerSize = ({ placement }: I.TabsProps) => {
+const headerSize = ({ placement }: TabsProps) => {
   switch (placement) {
     case 'left':
       return `
@@ -49,7 +48,7 @@ const headerSize = ({ placement }: I.TabsProps) => {
       `
   }
 }
-const bodyWidthAndPosition = ({ placement }: I.TabsProps) => {
+const bodyWidthAndPosition = ({ placement }: TabsProps) => {
   switch (placement) {
     case 'left':
       return `
@@ -64,7 +63,7 @@ const bodyWidthAndPosition = ({ placement }: I.TabsProps) => {
       `
   }
 }
-const bodyPadding = ({ placement }: I.TabsProps) => {
+const bodyPadding = ({ placement }: TabsProps) => {
   switch (placement) {
     case 'left':
       return `
@@ -78,7 +77,7 @@ const bodyPadding = ({ placement }: I.TabsProps) => {
   }
 }
 
-const pointerPlacement = ({ placement }: I.TabsProps) => {
+const pointerPlacement = ({ placement }: TabsProps) => {
   switch (placement) {
     case 'left':
       return `
@@ -107,7 +106,7 @@ export const Tabs = styled.div`
   }
 `
 
-export const TabLabel = styled.label<I.TabsProps>`
+export const TabLabel = styled.label<TabsProps>`
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -173,7 +172,7 @@ export const TabLabel = styled.label<I.TabsProps>`
     /* Placemet에 따른 선택 효과 위치 */
     ${pointerPlacement}
 `
-export const TabsHeader = styled.div<I.TabsProps>`
+export const TabsHeader = styled.div<TabsProps>`
   position: relative;
   box-sizing: border-box;
   /* Type에 따른 Background 색상 */
@@ -193,7 +192,7 @@ export const TabsHeader = styled.div<I.TabsProps>`
   ${headerSize}
 
 `
-export const TabsBody = styled.div<I.TabsProps>`
+export const TabsBody = styled.div<TabsProps>`
 
   height: 100%;
   overflow: auto;
