@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import palette from '../../../themes/palette'
 import Icon from '../../general/Icon'
-import Typography from '../../general/Typography'
+import Text from '../../general/Text'
 
 const TABLE_SIZE = {
   default: '16px',
@@ -135,7 +135,7 @@ function Table({ columns, loading, tableLayout, dataSource, yScroll, size }: Tab
             <td colSpan={columnKeys.length}>
               <StyledEmpty>
                 <Icon name="no-data" size={50} style={{ marginBottom: '12px' }} />
-                <Typography.Text color={palette.grayscale[4]}>No Data</Typography.Text>
+                <Text color={palette.grayscale[4]}>No Data</Text>
               </StyledEmpty>
             </td>
           )}

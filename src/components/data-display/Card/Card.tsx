@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import palette from '../../../themes/palette'
-import Typography from '../../general/Typography'
 import Paper from '../Paper'
 
 const CARD_PADDING_SIZE = {
