@@ -10,7 +10,14 @@ const StyledDivider = styled.div<DividerProps>`
 `
 
 type DividerProps = {
+  /**
+   * 적용 할 스타일
+   */
   style?: React.CSSProperties
+
+  /**
+   * dashed 여부
+   */
   dashed?: boolean
 }
 function Divider({ ...props }: DividerProps) {
