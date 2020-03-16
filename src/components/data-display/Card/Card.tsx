@@ -8,36 +8,6 @@ const CARD_PADDING_SIZE = {
   default: { header: '16px 24px', body: '24px' },
 }
 
-type StyledCardWrapperProps = {
-  shadow?: boolean
-}
-
-const StyledCardWrapper = styled.div<StyledCardWrapperProps>`
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: ${palette.grayscale[0]};
-  font-size: 14px;
-  font-variant: tabular-nums;
-  line-height: 1.5715;
-  list-style: none;
-  position: relative;
-  background: #fff;
-  border-radius: 2px;
-  transition: all 0.3s;
-
-  ${props =>
-    props.shadow
-      ? css`
-          box-shadow: 0 2px 6px 0 ${palette.shadow};
-        `
-      : css`
-          border: 1px solid ${palette.outline};
-        `}
-
-  width: 300px;
-`
-
 const StyledImageCover = styled.div`
   & > * {
     display: block;
@@ -51,20 +21,6 @@ type StyledCardBodyProps = {
 const StyledCardBody = styled.div<StyledCardBodyProps>`
   padding: ${props => CARD_PADDING_SIZE[props.size].body};
 `
-// const StyledMetaTitle = styled.h3`
-//   overflow: hidden;
-//   font-weight: 500;
-//   font-size: 16px;
-//   white-space: nowrap;
-//   text-overflow: ellipsis;
-//   margin-top: 0;
-//   margin-bottom: 7px;
-// `
-
-// const StyledMetaDescription = styled.p`
-//   margin: 0;
-//   color: ${palette.grayscale[2]};
-// `
 type StyledCardHeaderProps = {
   size?: 'small' | 'default'
 }
@@ -80,11 +36,23 @@ const StyledCardTitle = styled.h2`
 type CardProps = {
   children?: React.ReactNode
   style?: React.CSSProperties
+
+  /** 카드에 사용 할 타이틀 */
   title?: string
+
+  /** 카드 사이즈 */
   size?: 'small' | 'default'
+
+  /** 카드에 사용할 이미지 */
   cover?: React.ReactNode
+
+  /** 카드 그림자 정도 */
   evaluation?: number
+
+  /** 카드 테두리 */
   outlined?: boolean
+
+  /** 네모난 카드를 원하는가? */
   square?: boolean
 }
 function Card({ children, title, size, cover, evaluation, ...props }: CardProps) {
@@ -106,9 +74,8 @@ function Card({ children, title, size, cover, evaluation, ...props }: CardProps)
 
 Card.defaultProps = {
   size: 'default',
-  shadow: false,
   evaluation: 0,
-  outlined: false,
+  outlined: true,
   square: false,
 }
 
