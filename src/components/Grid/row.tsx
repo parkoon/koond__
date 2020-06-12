@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { tuple } from '../__utils/type'
-import { ColValueType } from './col'
+import { ColValueType } from './Col'
 import { BREAKPOINTS } from './breakpoints'
 
 const justifyValues = tuple('flex-start', 'flex-end', 'center', 'space-around', 'space-between')

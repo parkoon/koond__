@@ -1,8 +1,7 @@
 import styled, { css } from 'styled-components'
 import { BREAKPOINTS } from './breakpoints'
 import { tupleNum } from '../__utils/type'
-import { Gutter, applyGutter } from './row'
-
+import { applyGutter, Gutter } from './Row'
 const getColWidth = (gridSpan: number): string | null => {
   if (!gridSpan) return null
   const width = (gridSpan / 12) * 100
