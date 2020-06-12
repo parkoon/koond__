@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { transparentize } from 'polished'
 import Row, { RowProps } from './Row'
-import Col from './col'
+import Col from './Col'
 import COLORS from '../__utils/colors'
 
 export default {
