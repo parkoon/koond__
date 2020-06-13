@@ -1,6 +1,10 @@
 import React from 'react'
 import Form from './Form'
 import FormItem from './FormItem'
+import Input from '../Input'
+import Button from '../Button'
+
+const { Password } = Input
 
 export default {
   title: 'Form',
@@ -29,7 +33,7 @@ export const Default = () => {
             },
           ]}
         >
-          <input placeholder="id" type="text" />
+          <Input />
         </FormItem>
         <FormItem
           name="password"
@@ -45,7 +49,7 @@ export const Default = () => {
             },
           ]}
         >
-          <input placeholder="password" type="password" />
+          <Password />
         </FormItem>
         <FormItem
           name="nickname"
@@ -62,10 +66,10 @@ export const Default = () => {
             },
           ]}
         >
-          <input placeholder="nickname" type="text" />
+          <Input />
         </FormItem>
         <FormItem>
-          <button type="submit">Submit</button>
+          <Button variant="primary">Primary</Button>
         </FormItem>
       </Form>
     </>
