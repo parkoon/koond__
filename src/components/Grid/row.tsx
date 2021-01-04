@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import { tuple } from '../__utils/type'
-import { ColValueType } from './Col'
 import { BREAKPOINTS } from './breakpoints'
+import { ColValueType } from './Col'
 
 const justifyValues = tuple('flex-start', 'flex-end', 'center', 'space-around', 'space-between')
 type justifyEnum = typeof justifyValues[number]

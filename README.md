@@ -7,7 +7,7 @@
 ---
 
 ```
-$ git clone https://github.com/parkoon/koon-ui
+$ git clone https://github.com/parkoon/kood
 $ npm i
 $ npm run storybook
 ```
@@ -20,4 +20,4 @@ $ npm run storybook
 $ npm run deploy-storybook
 ```
 
-[Github page](https://parkoon.github.io/koon-ui/)
+[스토리북 데모](https://parkoon.github.io/koond/)
